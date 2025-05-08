@@ -7,6 +7,7 @@ import Home from "./src/Home";
 import Footer from "./src/Components/Footer";
 import Header from "./src/Components/Header";
 import Login from "./src/Login";
+import UserProfile from "./src/Profile";
 
 const StackNavigation = createNativeStackNavigator();
 
@@ -25,6 +26,13 @@ export default function App() {
           options={({ navigation }) => ({
             header: () => <Header title="Home" onMenuPress={() => {}} />,
           })}
+        />
+        <StackNavigation.Screen
+          name="Profile"
+          component={UserProfile}
+          options={{
+            header: () => <Header title="Perfil" onMenuPress={() => {}} />,
+          }}
         />
       </StackNavigation.Navigator>
       <Footer />
