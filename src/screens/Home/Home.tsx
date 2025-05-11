@@ -1,17 +1,17 @@
-// src/screens/HomeScreen.tsx
 import React, { useEffect, useState } from "react";
-import { View, Text, FlatList, TouchableOpacity, Image, Alert, ActivityIndicator } from "react-native";
+import { View, Text, FlatList, TouchableOpacity, Image, Alert, ActivityIndicator, TextInput } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import axios from "axios";
 import { useAuth } from "../../contexts/AuthContext";
 import { homeStyles } from "./styles"; // importando os estilos
-import Footer from "../../components/Footer";
 
 export default function HomeScreen() {
   const navigation = useNavigation();
   const { accessToken, isAuthenticated, isAdmin } = useAuth();
   const [posts, setPosts] = useState<any[]>([]);
+  const [filteredPosts, setFilteredPosts] = useState<any[]>([]); // Estado para posts filtrados
   const [loading, setLoading] = useState(true);
+  const [searchQuery, setSearchQuery] = useState(""); // Estado para o campo de busca
 
   const fetchPosts = async () => {
     setLoading(true);
@@ -20,10 +20,25 @@ export default function HomeScreen() {
         headers: { Authorization: `Bearer ${accessToken}` },
       });
       setPosts(res.data);
+      setFilteredPosts(res.data); // Inicializa os posts filtrados com todos os posts
     } catch (err) {
       console.error("Erro ao buscar posts", err);
     } finally {
       setLoading(false);
+    }
+  };
+
+  const handleSearch = (query: string) => {
+    setSearchQuery(query);
+    if (query.trim() === "") {
+      setFilteredPosts(posts); // Mostra todos os posts se o campo de busca estiver vazio
+    } else {
+      const filtered = posts.filter((post) =>
+        post.title.toLowerCase().includes(query.toLowerCase()) ||
+        post.author.toLowerCase().includes(query.toLowerCase()) ||
+        post.intro.toLowerCase().includes(query.toLowerCase())
+      );
+      setFilteredPosts(filtered);
     }
   };
 
@@ -57,9 +72,24 @@ export default function HomeScreen() {
   return (
     <View style={homeStyles.container}>
       <Text style={homeStyles.title}>Postagens</Text>
+      
+      <View style={homeStyles.searchContainer}>
+      <View style={homeStyles.searchWrapper}>
+        <Image
+          source={{ uri: "https://cdn-icons-png.flaticon.com/512/622/622669.png" }} // Ícone de lupa
+          style={homeStyles.searchIcon}
+        />
+        <TextInput
+          style={homeStyles.searchInput}
+          value={searchQuery}
+          onChangeText={handleSearch}
+          placeholder="Buscar por título, autor ou introdução"
+        />
+      </View>
+    </View>
 
       <FlatList
-        data={posts}
+        data={filteredPosts} // Usa os posts filtrados
         keyExtractor={(item) => item._id}
         renderItem={({ item }) => (
           <TouchableOpacity style={homeStyles.postCard}>
@@ -88,7 +118,6 @@ export default function HomeScreen() {
           </TouchableOpacity>
         )}
       />
-      <Footer/>
     </View>
   );
 }
