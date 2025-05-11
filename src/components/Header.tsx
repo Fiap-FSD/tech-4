@@ -14,31 +14,32 @@ export default function Header() {
 
   return (
     <View style={styles.header}>
-      <TouchableOpacity onPress={toggleMenu}>
-        <Text style={styles.menuButton}>☰ Menu</Text>
-      </TouchableOpacity>
+
+      <View style={styles.headerRow}></View>
+
+        <View style={{ flex: 1 }} /> {/* Espaço à esquerda */}
+
+        <Text style={styles.title}>Blog Posts</Text>
+
+        <TouchableOpacity onPress={toggleMenu} style={styles.buttonContainer}>
+          <Text style={styles.textButton}>☰</Text>
+        </TouchableOpacity>
+
+      <View />
       
 
       {menuVisible && (
         <View style={styles.menu}>
-          {/* <TouchableOpacity
+          
+          <TouchableOpacity
             style={styles.menuItem}
             onPress={() => {
               setMenuVisible(false);
               navigation.navigate("Home" as never);
             }}
           >
-            <Text style={styles.menuText}>Home</Text>
-          </TouchableOpacity> */}
-          {/* <TouchableOpacity
-            style={styles.menuItem}
-            onPress={() => {
-              setMenuVisible(false);
-              navigation.navigate("Blog" as never);
-            }}
-          >
             <Text style={styles.menuText}>Blog</Text>
-          </TouchableOpacity> */}
+          </TouchableOpacity>
 
           {/* {isAdmin && ( */}
             <TouchableOpacity
@@ -64,7 +65,7 @@ export default function Header() {
 
           
 
-          {isAdmin && (
+          {/* {isAdmin && ( */}
             <TouchableOpacity
               style={styles.menuItem}
               onPress={() => {
@@ -74,7 +75,7 @@ export default function Header() {
             >
               <Text style={styles.menuText}>Usuários</Text>
             </TouchableOpacity>
-          )}
+          {/* )} */}
         </View>
       )}
     </View>
@@ -84,12 +85,28 @@ export default function Header() {
 const styles = StyleSheet.create({
   header: {
     backgroundColor: "#007AFF",
-    paddingVertical: 15,
+    paddingVertical: 16,
     paddingHorizontal: 10,
   },
-  menuButton: {
+  headerRow: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  title: {
     color: "#fff",
-    fontSize: 18,
+    fontSize: 24,
+    fontWeight: "bold",
+    textAlign: "center",
+  },
+  buttonContainer: {
+    position: 'absolute',
+    top: 15,
+    right: 15
+  },
+  textButton: {
+    color: "#fff",
+    fontSize: 24,
     fontWeight: "bold",
   },
   menu: {
@@ -106,7 +123,8 @@ const styles = StyleSheet.create({
   menuItem: {
     paddingVertical: 10,
   },
-  menuText: {
+  menuText: {    
+    textAlign: "center",
     fontSize: 16,
     color: "#007AFF",
   },

@@ -5,7 +5,7 @@ export const homeStyles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 16,
-    marginTop: 40, // margem no topo
+    marginTop: 10, // margem no topo
   },
   title: {
     fontSize: 24,

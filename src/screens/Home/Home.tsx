@@ -4,7 +4,6 @@ import { useNavigation } from "@react-navigation/native";
 import axios from "axios";
 import { useAuth } from "../../contexts/AuthContext";
 import { homeStyles } from "./styles"; // importando os estilos
-import Header from "../../components/Header";
 
 export default function HomeScreen() {
   const navigation = useNavigation();
@@ -73,8 +72,7 @@ export default function HomeScreen() {
   return (
     <View style={homeStyles.container}>
       <Text style={homeStyles.title}>Postagens</Text>
-      <Header />
-
+      
       <View style={homeStyles.searchContainer}>
       <View style={homeStyles.searchWrapper}>
         <Image
