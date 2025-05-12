@@ -65,13 +65,37 @@ export const homeStyles = StyleSheet.create({
     justifyContent: 'center',
     marginLeft: 8,
   },
-  removeText: {
-    color: 'red',
-    fontSize: 12,
-  },
+
   editText: {
     color: 'blue',
     fontSize: 12,
     marginTop: 4,
+  },
+  editButton: {
+    backgroundColor: "#007BFF",
+    padding: 8,
+    borderRadius: 8,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  editButtonText: {
+    color: "#fff",
+    fontWeight: "bold",
+  },
+  removeText: {
+    color: 'red',
+    fontSize: 12,
+    marginTop: 4,
+  },
+  removeButton: {
+    backgroundColor: "#007BFF",
+    padding: 8,
+    borderRadius: 8,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+ removeButtonText: {
+    color: "#fff",
+    fontWeight: "bold",
   },
 });

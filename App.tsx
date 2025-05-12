@@ -9,6 +9,8 @@ import ProfileScreen from './src/screens/Profile/Profile';
 import NewPostScreen from './src/screens/NewPost/NewPost';
 import Header from './src/components/Header';
 import UsersScreen from './src/screens/Users/Users';
+import PostDetailsScreen from './src/screens/PostDetail/PostDetail';
+import EditPostScreen from './src/screens/EditPost/EditPost';
 
 const Stack = createNativeStackNavigator();
 
@@ -45,6 +47,16 @@ export default function App() {
             options={({ navigation }) => ({
               header: () => <Header />
             })}
+          />
+          <Stack.Screen
+          name="PostDetails"
+          component={PostDetailsScreen}
+          options={{ title: "Detalhes do Post" }}
+          />
+          <Stack.Screen
+          name="EditPost"
+          component={EditPostScreen}
+          options={{ title: "Editar Post" }}
           />
         </Stack.Navigator>
       </NavigationContainer>

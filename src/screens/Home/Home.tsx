@@ -4,9 +4,21 @@ import { useNavigation } from "@react-navigation/native";
 import axios from "axios";
 import { useAuth } from "../../contexts/AuthContext";
 import { homeStyles } from "./styles"; // importando os estilos
+import { StackNavigationProp } from "@react-navigation/stack";
 
 export default function HomeScreen() {
-  const navigation = useNavigation();
+  
+  type RootStackParamList = {
+    Home: undefined;
+    PostDetails: { post: any };
+    EditPost: { post?: any };
+    Profile: undefined;
+    Users: undefined;
+  };
+  
+  type HomeScreenNavigationProp = StackNavigationProp<RootStackParamList, "Home">;
+  
+  const navigation = useNavigation<HomeScreenNavigationProp>();
   const { accessToken, isAuthenticated, isAdmin } = useAuth();
   const [posts, setPosts] = useState<any[]>([]);
   const [filteredPosts, setFilteredPosts] = useState<any[]>([]); // Estado para posts filtrados
@@ -80,7 +92,6 @@ export default function HomeScreen() {
           style={homeStyles.searchIcon}
         />
         <TextInput
-          style={homeStyles.searchInput}
           value={searchQuery}
           onChangeText={handleSearch}
           placeholder="Buscar por título, autor ou introdução"
@@ -92,7 +103,9 @@ export default function HomeScreen() {
         data={filteredPosts} // Usa os posts filtrados
         keyExtractor={(item) => item._id}
         renderItem={({ item }) => (
-          <TouchableOpacity style={homeStyles.postCard}>
+          <TouchableOpacity style={homeStyles.postCard}
+          onPress={() => navigation.navigate("PostDetails", { post: item })}
+          >
             <Image
               source={{ uri: item.imageUrl || "https://via.placeholder.com/100" }}
               style={homeStyles.postImage}
@@ -105,16 +118,19 @@ export default function HomeScreen() {
               </Text>
             </View>
 
-            {isAdmin && (
-              <View style={homeStyles.postActions}>
-                <TouchableOpacity onPress={() => handleRemove(item._id)}>
-                  <Text style={homeStyles.removeText}>Remover</Text>
-                </TouchableOpacity>
-                <TouchableOpacity>
-                  <Text style={homeStyles.editText}>Editar</Text>
-                </TouchableOpacity>
-              </View>
-            )}
+          {isAdmin && (
+            <View style={homeStyles.postActions}>
+              <TouchableOpacity onPress={() => handleRemove(item._id)}>
+                <Text style={homeStyles.removeText}>Remover</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={homeStyles.editButton}
+                onPress={() => navigation.navigate("EditPost", { post: item })}
+              >
+                <Text style={homeStyles.editButtonText}>Editar</Text>
+              </TouchableOpacity>
+            </View>
+          )}
           </TouchableOpacity>
         )}
       />
