@@ -7,8 +7,10 @@ import { AuthProvider } from './src/contexts/AuthContext';
 import HomeScreen from './src/screens/Home/Home';
 import ProfileScreen from './src/screens/Profile/Profile';
 import NewPostScreen from './src/screens/NewPost/NewPost';
-import Header from './src/components/Header';
+import Header from './src/components/Header/Header';
 import UsersScreen from './src/screens/Users/Users';
+import PostDetailScreen from './src/screens/PostDetail/PostDetail';
+import EditPostScreen from './src/screens/Edit';
 
 const Stack = createNativeStackNavigator();
 
@@ -42,6 +44,20 @@ export default function App() {
           <Stack.Screen 
             name="Users" 
             component={UsersScreen}
+            options={({ navigation }) => ({
+              header: () => <Header />
+            })}
+          />
+          <Stack.Screen 
+            name="PostDetail" 
+            component={PostDetailScreen} // Substitua pelo componente correto
+            options={({ navigation }) => ({
+              header: () => <Header />
+            })}
+          />
+         <Stack.Screen
+            name="EditPostScreen"
+            component={EditPostScreen}
             options={({ navigation }) => ({
               header: () => <Header />
             })}

@@ -4,9 +4,12 @@ import { useNavigation } from "@react-navigation/native";
 import axios from "axios";
 import { useAuth } from "../../contexts/AuthContext";
 import { homeStyles } from "./styles"; // importando os estilos
+import { RootStackParamList } from "../../types";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { AntDesign } from "@expo/vector-icons";
 
 export default function HomeScreen() {
-  const navigation = useNavigation();
+  const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
   const { accessToken, isAuthenticated, isAdmin } = useAuth();
   const [posts, setPosts] = useState<any[]>([]);
   const [filteredPosts, setFilteredPosts] = useState<any[]>([]); // Estado para posts filtrados
@@ -92,7 +95,10 @@ export default function HomeScreen() {
         data={filteredPosts} // Usa os posts filtrados
         keyExtractor={(item) => item._id}
         renderItem={({ item }) => (
-          <TouchableOpacity style={homeStyles.postCard}>
+          <TouchableOpacity 
+            style={homeStyles.postCard}
+            onPress={() => navigation.navigate("PostDetail", { id: item._id })}
+          >
             <Image
               source={{ uri: item.imageUrl || "https://via.placeholder.com/100" }}
               style={homeStyles.postImage}
@@ -108,10 +114,10 @@ export default function HomeScreen() {
             {isAdmin && (
               <View style={homeStyles.postActions}>
                 <TouchableOpacity onPress={() => handleRemove(item._id)}>
-                  <Text style={homeStyles.removeText}>Remover</Text>
+                  <AntDesign name="delete" size={24} color="red" />
                 </TouchableOpacity>
-                <TouchableOpacity>
-                  <Text style={homeStyles.editText}>Editar</Text>
+                <TouchableOpacity onPress={() => navigation.navigate("EditPostScreen", { postId: item._id })}>
+                  <AntDesign name="edit" size={24} color="blue" />
                 </TouchableOpacity>
               </View>
             )}

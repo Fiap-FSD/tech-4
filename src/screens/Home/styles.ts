@@ -64,6 +64,7 @@ export const homeStyles = StyleSheet.create({
   postActions: {
     justifyContent: 'center',
     marginLeft: 8,
+    gap: 16,
   },
   removeText: {
     color: 'red',
