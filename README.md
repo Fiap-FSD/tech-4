@@ -32,10 +32,10 @@ A equipe utilizou as seguintes ferramentas durante o desenvolvimento do projeto:
 - **Axios**:  Biblioteca usada para fazer requisições HTTP e buscar dados de uma API externa. O Axios foi utilizado para buscar os posts, docentes e alunos do servidor, além de enviar as informações do usuário, permitindo uma integração fluida com a API do backend.
 
 
-🧱 Arquitetura da Aplicação
+## 🧱 Arquitetura da Aplicação
 A aplicação é um front-end mobile desenvolvido com React Native e Expo, utilizando TypeScript para tipagem estática. O projeto adota uma arquitetura modular e escalável, com foco na separação de responsabilidades e na experiência do usuário.
 
-📐 Camadas e Estrutura
+## 📐 Camadas e Estrutura
 Apresentação (UI): Componentes React Native responsáveis pela interface gráfica e interação com o usuário.
 
 Serviços: Módulos que encapsulam chamadas à API utilizando Axios, facilitando a comunicação com o back-end.
@@ -44,7 +44,7 @@ Gerenciamento de Estado: Utilização de contextos e hooks personalizados para g
 
 Autenticação: Implementação de autenticação baseada em JWT, com tokens armazenados de forma segura no AsyncStorage nativo.
 
-🗂️ Estrutura de Pastas
+## 🗂️ Estrutura de Pastas
 ```
 .
 ├── src/
@@ -61,13 +61,13 @@ Autenticação: Implementação de autenticação baseada em JWT, com tokens arm
 └── tsconfig.json         # Configurações do TypeScript
 ```
 
-🔐 Segurança e Autenticação
+## 🔐 Segurança e Autenticação
 A aplicação implementa autenticação de usuários utilizando JWT (JSON Web Tokens). Os tokens são armazenados de forma segura no AsyncStorage, garantindo persistência entre sessões e segurança nas requisições autenticadas.
 
-⚙️ Integração com o Back-End
+## ⚙️ Integração com o Back-End
 As comunicações com o back-end são realizadas por meio de requisições HTTP utilizando Axios. Os serviços são organizados em módulos, facilitando a manutenção e a escalabilidade da aplicação.
 
-📱 Experiência do Usuário
+## 📱 Experiência do Usuário
 O projeto prioriza uma experiência de usuário fluida e responsiva, com interfaces intuitivas e navegação simplificada. O uso de React Native permite a entrega de uma aplicação nativa com desempenho otimizado para dispositivos móveis.
 
 ### 🖌️ Funcionalidades
