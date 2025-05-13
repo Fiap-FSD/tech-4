@@ -70,7 +70,7 @@ export default function HomeScreen() {
     fetchPosts();
   }, []);
 
-  if (loading) return <ActivityIndicator style={{ marginTop: 40 }} size="large" />;
+  if (loading) return <ActivityIndicator style={{ marginTop: 40 }} size="large" color={"#007AFF"} />;
 
   return (
     <View style={homeStyles.container}>

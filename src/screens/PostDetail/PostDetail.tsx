@@ -40,7 +40,7 @@ export default function PostDetailScreen() {
     return videoId ? `https://www.youtube.com/embed/${videoId}` : null;
   };
 
-  if (loading) return <ActivityIndicator style={{ marginTop: 40 }} size="large" />;
+  if (loading) return <ActivityIndicator style={{ marginTop: 40 }} size="large" color={"#007AFF"} />;
   if (!post) return <Text style={{ marginTop: 40, textAlign: "center" }}>Post não encontrado</Text>;
 
   const videoEmbedUrl = post.videoUrl ? getYouTubeEmbedUrl(post.videoUrl) : null;

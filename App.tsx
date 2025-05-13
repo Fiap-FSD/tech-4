@@ -4,13 +4,18 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import LoginScreen from './src/screens/Login/Login';
 import { AuthProvider } from './src/contexts/AuthContext';
+
+import Header from './src/components/Header/Header';
+
 import HomeScreen from './src/screens/Home/Home';
 import ProfileScreen from './src/screens/Profile/Profile';
 import NewPostScreen from './src/screens/NewPost/NewPost';
-import Header from './src/components/Header/Header';
-import UsersScreen from './src/screens/Users/Users';
 import PostDetailScreen from './src/screens/PostDetail/PostDetail';
 import EditPostScreen from './src/screens/Edit';
+import DocentesScreen from './src/screens/Docentes/Docentes';
+import AlunosScreen from './src/screens/Alunos/Alunos';
+import DocenteDetailScreen from './src/screens/DocenteDetail/DocenteDetail';
+import AlunoDetailScreen from './src/screens/AlunoDetail/AlunoDetail';
 
 const Stack = createNativeStackNavigator();
 
@@ -40,17 +45,10 @@ export default function App() {
             options={({ navigation }) => ({
               header: () => <Header />
             })}  
-          />
-          <Stack.Screen 
-            name="Users" 
-            component={UsersScreen}
-            options={({ navigation }) => ({
-              header: () => <Header />
-            })}
-          />
+          />          
           <Stack.Screen 
             name="PostDetail" 
-            component={PostDetailScreen} // Substitua pelo componente correto
+            component={PostDetailScreen}
             options={({ navigation }) => ({
               header: () => <Header />
             })}
@@ -58,6 +56,34 @@ export default function App() {
          <Stack.Screen
             name="EditPostScreen"
             component={EditPostScreen}
+            options={({ navigation }) => ({
+              header: () => <Header />
+            })}
+          />
+          <Stack.Screen 
+            name="Docentes" 
+            component={DocentesScreen}
+            options={({ navigation }) => ({
+              header: () => <Header />
+            })}
+          />
+          <Stack.Screen 
+            name="Alunos" 
+            component={AlunosScreen}
+            options={({ navigation }) => ({
+              header: () => <Header />
+            })}
+          />
+          <Stack.Screen 
+            name="DocenteDetail" 
+            component={DocenteDetailScreen}
+            options={({ navigation }) => ({
+              header: () => <Header />
+            })}
+          />
+          <Stack.Screen 
+            name="AlunoDetail" 
+            component={AlunoDetailScreen}
             options={({ navigation }) => ({
               header: () => <Header />
             })}

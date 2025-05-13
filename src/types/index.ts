@@ -13,6 +13,19 @@ export interface PostFormProps {
   onSubmit: (values: IPost) => Promise<void>;
 }
 
+export interface IUser{
+  _id?: string;
+  name: string;
+  email: string;
+  role: string;
+  senha: string;
+}
+
+export interface UserFormProps {
+  initialData?: IUser;
+  onSubmit: (values: IUser) => Promise<void>;
+}
+
 export interface IAuthContextProps {
   accessToken: string | null;
   isAuthenticated: boolean;
@@ -24,6 +37,8 @@ export interface IAuthContextProps {
 
 export type RootStackParamList = {
   Home: undefined;
-  PostDetail: { id: string }; // Aqui definimos que PostDetail espera um `id`
-  EditPostScreen: { postId: string }; // Aqui definimos que Edit espera um `postId`
+  PostDetail: { id: string }; 
+  EditPostScreen: { postId: string };
+  DocenteDetail: { id: string }; 
+  AlunoDetail: { id: string };
 };

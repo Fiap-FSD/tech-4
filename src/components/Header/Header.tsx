@@ -69,8 +69,14 @@ export default function Header() {
             </TouchableOpacity>
 
             {isAdmin && (
-              <TouchableOpacity style={styles.menuItem} onPress={() => handleNavigation("Users")}>
-                <Text style={styles.menuText}>Usuários</Text>
+              <TouchableOpacity style={styles.menuItem} onPress={() => handleNavigation("Docentes")}>
+                <Text style={styles.menuText}>Professores</Text>
+              </TouchableOpacity>
+            )}
+
+            {isAdmin && (
+              <TouchableOpacity style={styles.menuItem} onPress={() => handleNavigation("Alunos")}>
+                <Text style={styles.menuText}>Alunos</Text>
               </TouchableOpacity>
             )}
           </Animated.View>
