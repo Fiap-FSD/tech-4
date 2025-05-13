@@ -45,6 +45,7 @@ Gerenciamento de Estado: Utilização de contextos e hooks personalizados para g
 Autenticação: Implementação de autenticação baseada em JWT, com tokens armazenados de forma segura no AsyncStorage nativo.
 
 🗂️ Estrutura de Pastas
+```
 .
 ├── src/
 │   ├── components/       # Componentes reutilizáveis de UI
@@ -58,6 +59,7 @@ Autenticação: Implementação de autenticação baseada em JWT, com tokens arm
 ├── app.json              # Configurações do projeto Expo
 ├── package.json          # Dependências e scripts do projeto
 └── tsconfig.json         # Configurações do TypeScript
+```
 
 🔐 Segurança e Autenticação
 A aplicação implementa autenticação de usuários utilizando JWT (JSON Web Tokens). Os tokens são armazenados de forma segura no AsyncStorage, garantindo persistência entre sessões e segurança nas requisições autenticadas.
