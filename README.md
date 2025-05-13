@@ -101,7 +101,7 @@ O projeto prioriza uma experiência de usuário fluida e responsiva, com interfa
 5. Página de Criação de Alunos/Professores:
    
  - Formulário para que alunos/professores autenticados possam cadastrar outros usuários.
- - Campos como nome, e-mail e senha do novo professor.
+ - Campos como nome, e-mail e senha do novo aluno/professor estão disponíveis na página.
  - Após o envio, o novo usuário é registrado no sistema.
 
 6. Página de Listagem de Usuários
@@ -111,7 +111,7 @@ O projeto prioriza uma experiência de usuário fluida e responsiva, com interfa
 
 7. Autenticação e Autorização
    
- - O sistema implementa controle de acesso com login via e-mail e senha.
+ - O sistema implementa controle de acesso com login via e-mail e senha (URL /auth/login)
  - As rotas protegidas são validadas antes de renderizar o conteúdo.
 
 ## 📦 Instalação e Execução
