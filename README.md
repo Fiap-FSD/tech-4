@@ -32,62 +32,41 @@ A equipe utilizou as seguintes ferramentas durante o desenvolvimento do projeto:
 - **Axios**:  Biblioteca usada para fazer requisições HTTP e buscar dados de uma API externa. O Axios foi utilizado para buscar os posts, docentes e alunos do servidor, além de enviar as informações do usuário, permitindo uma integração fluida com a API do backend.
 
 
-## 🏗️ Arquitetura da Aplicação
+🧱 Arquitetura da Aplicação
+A aplicação é um front-end mobile desenvolvido com React Native e Expo, utilizando TypeScript para tipagem estática. O projeto adota uma arquitetura modular e escalável, com foco na separação de responsabilidades e na experiência do usuário.
 
-A arquitetura da aplicação foi projetada de forma modular e escalável, com separação clara entre responsabilidades. A seguir, os principais aspectos da organização do projeto:
+📐 Camadas e Estrutura
+Apresentação (UI): Componentes React Native responsáveis pela interface gráfica e interação com o usuário.
 
-- **Organização por funcionalidades**: O projeto segue uma estrutura baseada em pastas funcionais, onde cada feature (Login, Home, Profile, etc.) possui sua própria pasta contendo a tela (``.tsx``) e o arquivo de estilos (``styles.ts``).
+Serviços: Módulos que encapsulam chamadas à API utilizando Axios, facilitando a comunicação com o back-end.
 
-- **Componentização**: Elementos reutilizáveis da interface, como o ``Header``, estão localizados na pasta ``components/``. Isso promove reutilização de código e facilita a manutenção da interface.
+Gerenciamento de Estado: Utilização de contextos e hooks personalizados para gerenciar o estado da aplicação de forma eficiente.
 
-- **Gerenciamento de estado com Context API**: A pasta ``contexts/`` contém a lógica de autenticação compartilhada entre as telas, utilizando o padrão de Context API do React para controlar o estado do usuário logado e seu perfil (professor ou aluno).
+Autenticação: Implementação de autenticação baseada em JWT, com tokens armazenados de forma segura no AsyncStorage nativo.
 
-- **Navegação centralizada**: Toda a navegação entre telas é gerenciada pelo React Navigation, inicializado no arquivo ``App.tsx``. Isso garante um fluxo unificado entre as views.
+🗂️ Estrutura de Pastas
+.
+├── src/
+│   ├── components/       # Componentes reutilizáveis de UI
+│   ├── screens/          # Telas da aplicação
+│   ├── services/         # Módulos de acesso à API
+│   ├── contexts/         # Contextos para gerenciamento de estado
+│   ├── hooks/            # Hooks personalizados
+│   └── utils/            # Funções utilitárias
+├── assets/               # Recursos estáticos (imagens, fontes)
+├── App.tsx               # Componente principal da aplicação
+├── app.json              # Configurações do projeto Expo
+├── package.json          # Dependências e scripts do projeto
+└── tsconfig.json         # Configurações do TypeScript
 
-- **Integração com Backend**: A comunicação com o backend é feita por meio da biblioteca Axios (em arquivos de serviços que podem ser incluídos posteriormente), permitindo que as telas realizem chamadas autenticadas à API.
+🔐 Segurança e Autenticação
+A aplicação implementa autenticação de usuários utilizando JWT (JSON Web Tokens). Os tokens são armazenados de forma segura no AsyncStorage, garantindo persistência entre sessões e segurança nas requisições autenticadas.
 
-- **Tipagem com TypeScript:**: A pasta ``types/`` centraliza as interfaces e tipos utilizados ao longo da aplicação, promovendo consistência e evitando erros comuns.
+⚙️ Integração com o Back-End
+As comunicações com o back-end são realizadas por meio de requisições HTTP utilizando Axios. Os serviços são organizados em módulos, facilitando a manutenção e a escalabilidade da aplicação.
 
-### 📖 Estrutura dos diretórios:
-
-A estrutura utilizada segue as convenções do Next.js para separação de componentes, páginas e contextos, mantendo o código modular e escalável.
-
-```
-📦tech-4  
- ┣ 📂assets
- ┃ ┣ 📜adaptive-icon.png
- ┃ ┣ 📜favicon.png
- ┃ ┣ 📜Fiap-logo.jpg
- ┃ ┣ 📜icon.png
- ┃ ┗ 📜splash-icon.png
- ┣ 📂src
- ┃ ┣ 📂components
- ┃ ┃ ┗ 📜Header.tsx
- ┃ ┣ 📂contexts
- ┃ ┃ ┗ 📜AuthContext.tsx
- ┃ ┣ 📂screens
- ┃ ┃ ┣ 📂Home
- ┃ ┃ ┃ ┣ 📜Home.tsx
- ┃ ┃ ┃ ┗ 📜styles.ts
- ┃ ┃ ┣ 📂Login
- ┃ ┃ ┃ ┣ 📜Login.tsx
- ┃ ┃ ┃ ┗ 📜styles.ts
- ┃ ┃ ┣ 📂NewPost
- ┃ ┃ ┃ ┗ 📜NewPost.tsx
- ┃ ┃ ┣ 📂Profile
- ┃ ┃ ┃ ┗ 📜Profile.tsx
- ┃ ┃ ┗ 📂Users
- ┃ ┃ ┃ ┗ 📜Users.tsx
- ┃ ┗ 📂types
- ┃ ┃ ┗ 📜index.ts
- ┣ 📜.gitignore
- ┣ 📜app.json
- ┣ 📜App.tsx
- ┣ 📜index.ts
- ┣ 📜package.json
- ┣ 📜README.md
- ┗ 📜tsconfig.json
-```
+📱 Experiência do Usuário
+O projeto prioriza uma experiência de usuário fluida e responsiva, com interfaces intuitivas e navegação simplificada. O uso de React Native permite a entrega de uma aplicação nativa com desempenho otimizado para dispositivos móveis.
 
 ### 🖌️ Funcionalidades
 1. Página de Login:
