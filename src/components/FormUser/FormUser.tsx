@@ -38,7 +38,7 @@ export default function PostForm({ initialData, onSubmit }: UserFormProps) {
   return (
     <ScrollView style={styles.container}>
       <Text style={styles.heading}>
-        {initialData ? "Editar Post" : "Novo Post"}
+        {initialData ? "Editar Usuário" : "Novo Usuário"}
       </Text>
 
       {[
