@@ -33,7 +33,11 @@ A equipe utilizou as seguintes ferramentas durante o desenvolvimento do projeto:
 
 
 ## 🧱 Arquitetura da Aplicação
-A aplicação é um front-end mobile desenvolvido com React Native e Expo, utilizando TypeScript para tipagem estática. O projeto adota uma arquitetura modular e escalável, com foco na separação de responsabilidades e na experiência do usuário.
+A arquitetura do projeto segue o padrão do React Native com Expo, voltado para o desenvolvimento de aplicações mobile nativas multiplataforma (Android e iOS), utilizando TypeScript. A aplicação é estruturada de forma modular e escalável, promovendo desenvolvimento orientado a componentes, com foco em reutilização de código, separação de responsabilidades e organização eficiente.
+
+A utilização do Expo simplifica o gerenciamento de bibliotecas nativas e permite um ciclo de desenvolvimento rápido e otimizado. A arquitetura também faz uso do React Navigation, proporcionando uma navegação fluida entre telas, com suporte a pilhas de navegação, abas, rotas dinâmicas e parâmetros tipados com segurança via TypeScript.
+
+Essa abordagem melhora tanto a experiência de desenvolvimento quanto a experiência do usuário, oferecendo interfaces responsivas, navegação intuitiva e comunicação eficiente com APIs externas.
 
 ## 📐 Camadas e Estrutura
 Apresentação (UI): Componentes React Native responsáveis pela interface gráfica e interação com o usuário.
@@ -73,21 +77,42 @@ O projeto prioriza uma experiência de usuário fluida e responsiva, com interfa
 ### 🖌️ Funcionalidades
 1. Página de Login:
 
-  - O usuário pode inserir um email e senha para se autenticar.
+  - O usuário pode inserir um email e senha para se autenticar, alunos e professores terão seu usuário e senha.
   - O sistema redireciona o usuário para a página Home.
+  - Apenas usuários autenticados poderão acessar páginas restritas, como criação, edição e administração de posts.
 
 2. Página de Criação de Post:
 
-  - Os usuários autenticados podem criar novos posts. O título, conteúdo, autor, introdução, imagem e link de vídeo podem ser definidos.
+  - Os usuários autenticados podem criar novos posts. O título, conteúdo, autor, introdução, imagem e link de vídeo podem ser inseridos/redefinidos.
+  - Ao enviar o formulário, os dados são enviados para o servidor e o post é adicionado à lista de publicações.
 
 3. Página de Edição de Post:
 
-  - Os usuários podem editar posts existentes acessando a URL /edit/[id], onde [id] é o identificador do post.
-  - A edição é feita por meio de um formulário onde o usuário pode atualizar os campos.
+  - Os usuários podem editar uma postagem existente acessando a URL /edit/[id], onde [id] representa o identificador único da postagem.
+  - A página carrega os dados atuais da postagem em um formulário editável.
+  - O formulário permite alterar qualquer campo previamente preenchido, como título, conteúdo, imagem, etc.
+  - Após as alterações, o usuário pode clicar no botão de salvar para atualizar o conteúdo no servidor.
 
 4. Página de Detalhes do Post:
 
+  - Essa página exibe as informações completas de uma publicação específica.
   - A página exibe os detalhes de um post específico, acessado pela URL /post/[id]
+
+5. Página de Criação de Alunos/Professores:
+   
+ - Formulário para que alunos/professores autenticados possam cadastrar outros usuários.
+ - Campos como nome, e-mail e senha do novo professor.
+ - Após o envio, o novo usuário é registrado no sistema.
+
+6. Página de Listagem de Usuários
+
+ - Exibe uma lista paginada de alunos/professores cadastrados no sistema.
+ - Cada item possui informações do usuário, botão de edição e exclusão.
+
+7. Autenticação e Autorização
+   
+ - O sistema implementa controle de acesso com login via e-mail e senha.
+ - As rotas protegidas são validadas antes de renderizar o conteúdo.
 
 ## 📦 Instalação e Execução
 
