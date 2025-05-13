@@ -74,45 +74,65 @@ As comunicações com o back-end são realizadas por meio de requisições HTTP 
 ## 📱 Experiência do Usuário
 O projeto prioriza uma experiência de usuário fluida e responsiva, com interfaces intuitivas e navegação simplificada. O uso de React Native permite a entrega de uma aplicação nativa com desempenho otimizado para dispositivos móveis.
 
-### 🖌️ Funcionalidades
+
+## 🖌️ Funcionalidades
 1. Página de Login:
 
-  - O usuário pode inserir um email e senha para se autenticar, alunos e professores terão seu usuário e senha.
+  - O usuário pode inserir um email e senha para se autenticar.
   - O sistema redireciona o usuário para a página Home.
-  - Apenas usuários autenticados poderão acessar páginas restritas, como criação, edição e administração de posts.
 
-2. Página de Criação de Post:
+2. Página principal:
 
-  - Os usuários autenticados podem criar novos posts. O título, conteúdo, autor, introdução, imagem e link de vídeo podem ser inseridos/redefinidos.
-  - Ao enviar o formulário, os dados são enviados para o servidor e o post é adicionado à lista de publicações.
+  - A página exibe uma lista de todos os posts disponíveis.
+  - Os usários podem buscar um post espécifíco através de um campo de pesquisa por palavras-chave.
+  - Cada item da lista mostra o título, autor e uma breve descrição do post.
 
-3. Página de Edição de Post:
+3. Página de leitura de Post:
 
-  - Os usuários podem editar uma postagem existente acessando a URL /edit/[id], onde [id] representa o identificador único da postagem.
-  - A página carrega os dados atuais da postagem em um formulário editável.
-  - O formulário permite alterar qualquer campo previamente preenchido, como título, conteúdo, imagem, etc.
-  - Após as alterações, o usuário pode clicar no botão de salvar para atualizar o conteúdo no servidor.
+  - Os usuários podem conferir o conteúdo de um posts específico selecionado previamente
 
-4. Página de Detalhes do Post:
+4. Página de Criação de Post:
 
-  - Essa página exibe as informações completas de uma publicação específica.
-  - A página exibe os detalhes de um post específico, acessado pela URL /post/[id]
+  - Os usuários autenticados podem criar novos posts. O título, conteúdo, autor, introdução, imagem e link de vídeo podem ser definidos.
+  - A criação é feita por meio de um formulário onde o usuário pode preencher os campos.
 
-5. Página de Criação de Alunos/Professores:
-   
- - Formulário para que alunos/professores autenticados possam cadastrar outros usuários.
- - Campos como nome, e-mail e senha do novo aluno/professor estão disponíveis na página.
- - Após o envio, o novo usuário é registrado no sistema.
+5. Página de Edição de Post:
 
-6. Página de Listagem de Usuários
+  - Os usuários podem editar posts existentes.
+  - A edição é feita por meio de um formulário onde o usuário pode atualizar os campos.
 
- - Exibe uma lista paginada de alunos/professores cadastrados no sistema.
- - Cada item possui informações do usuário, botão de edição e exclusão.
+6. Página de Criação de Professores:
 
-7. Autenticação e Autorização
-   
- - O sistema implementa controle de acesso com login via e-mail e senha (URL /auth/login)
- - As rotas protegidas são validadas antes de renderizar o conteúdo.
+  - Os usuários autenticados podem cadastrar novas contas de professores. Nome, email e senha, podem ser definidos.
+  - A criação é feita por meio de um formulário onde o usuário pode preencher os campos.
+
+7. Página de Edição de Professores:
+
+  - Os usuários podem editar contas de professores existentes.
+  - A edição é feita por meio de um formulário onde o usuário pode atualizar os campos.
+8. Página de listagem de Professores:
+
+  - Os usuários podem conferir as informações de todos os professores.
+
+9. Página de Criação de Alunos:
+
+  - Os usuários autenticados podem cadastrar novas contas de Alunos. Nome, email e senha, podem ser definidos.
+  - A criação é feita por meio de um formulário onde o usuário pode preencher os campos.
+
+10. Página de Edição de Alunos:
+
+  - Os usuários podem editar contas de alunos existentes.
+  - A edição é feita por meio de um formulário onde o usuário pode atualizar os campos.
+
+11. Página de listagem de Alunos:
+
+  - Os usuários podem conferir as informações de todos os alunos.
+
+12. Página Administrativa
+
+  - A página exibe uma lista de todos os posts disponíveis, com opções para editar e excluir cada post.
+  - Os usários podem buscar um post espécifíco através de um campo de pesquisa por palavras-chave.
+  - Cada item da lista mostra o título, autor e uma breve descrição do post.
 
 ## 📦 Instalação e Execução
 
