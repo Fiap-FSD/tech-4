@@ -151,9 +151,12 @@ Outro ponto importante é que a integração com o GitHub permite que o deploy s
 
 ## 📜 Conclusão
 
-Este projeto foi uma excelente oportunidade para aprimorar habilidades no desenvolvimento front-end, utilizando tecnologias modernas e robustas como React.js, Next.js, Axios, TailwindCSS e Styled-components. Durante o desenvolvimento, conseguimos criar uma interface gráfica dinâmica, responsiva e intuitiva para a aplicação de blog, garantindo uma experiência de usuário fluida e uma integração eficiente com a API do back-end.
+O desenvolvimento deste projeto proporcionou à equipe uma experiência completa no ciclo de construção de um aplicativo mobile moderno, desde a concepção até a entrega funcional. Com o uso de ferramentas como Visual Studio Code, GitHub, Expo e React Native, foi possível estruturar uma aplicação escalável e eficiente, com foco em performance e experiência do usuário.
 
-A arquitetura adotada baseada no padrão NextJS que trouxe vantagens significativas, como modularidade, escalabilidade e alta performance, permitindo um desenvolvimento ágil e bem estruturado. Além dessas vantagens, existe a facilidade no deploy do projeto, na vercel, pois oferece uma integração nativa que automatiza grande parte do processo. A integração do Axios facilitou a comunicação com a API, enquanto TailwindCSS e Styled-components garantiram um design coeso, flexível e de fácil manutenção.
+A arquitetura adotada, baseada em módulos bem definidos e com separação clara de responsabilidades, garantiu um código limpo, reutilizável e fácil de manter. A integração com o back-end por meio do Axios e o uso de JWT para autenticação reforçaram os conceitos de segurança e comunicação assíncrona entre cliente e servidor.
 
-O projeto reforçou a importância das boas práticas de desenvolvimento, como controle de versão pelo GitHub, organização modular do código e foco na usabilidade. O resultado é uma aplicação funcional e bem estruturada, pronta para ser utilizada por docentes e alunos, oferecendo um ambiente de leitura e interação intuitivo.
+Além dos aspectos técnicos, o trabalho em equipe foi essencial para o sucesso do projeto. A colaboração via Discord, Github e as boas práticas com pull requests e revisão de código fortaleceram o aprendizado coletivo e simularam um ambiente real de desenvolvimento ágil.
+
+Este projeto representa não apenas a entrega de uma solução funcional, mas também um avanço significativo nas habilidades práticas da equipe em desenvolvimento mobile, integração de APIs, controle de versão e aplicação de boas práticas de arquitetura.
+
 
