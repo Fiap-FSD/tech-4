@@ -2,17 +2,18 @@
   <img src="./assets/Fiap-logo.jpg" width="400" /></a>
 </p>
 
-# ✨ Criação do Front-End Mobile do Blog Post
+# ✨ Blog Post App - Front-End Mobile
 
-Este é um projeto de aplicativo de blog onde os usuários podem criar, editar e visualizar posts, professores e alunos. A aplicação foi construída utilizando o framework Expo, baseado em React Native, na linguagem TypeScript e Axios API para chamadas a APIs externas, além de autenticação com JWT armazenado em asyncstorage nativo. O design do projeto segue uma arquitetura moderna e modular, com foco na escalabilidade e na experiência do usuário.
+Aplicativo mobile de blog desenvolvido com React Native, Expo e TypeScript. Permite que usuários criem, editem e visualizem posts, além de interagir com professores e alunos. A aplicação utiliza autenticação via JWT armazenado com AsyncStorage e segue uma arquitetura modular e escalável.
 
 Será apresentada a maneira de execução de cada step do projeto contendo informações cruciais sobre como configurar, usar e contribuir com o projeto.
 
 ## 🎯 Objetivos do Projeto
 
-- Desenvolver uma interface gráfica para aplicação de blogging, utilizando React Native.
-- Aplicação deve ser acessível e fácil de usar.
-- Implementar o uso de endpoints REST para permitir a interação entre os usuários e o conteúdo do blog.
+- Desenvolver uma interface gráfica para uma aplicação de blogging utilizando React Native.
+- Garantir que a aplicação seja acessível e fácil de usar.
+- Implementar autenticação segura com JWT.
+- Consumir APIs externas para gerenciamento de posts, usuários e interações.
 
 ## 🛠️ Ferramentas Utilizadas
 
@@ -107,36 +108,39 @@ A estrutura utilizada segue as convenções do Next.js para separação de compo
 
   - A página exibe os detalhes de um post específico, acessado pela URL /post/[id]
 
-## 🚀 Como rodar o projeto
+## 📦 Instalação e Execução
 
 ### Pré-requisitos
 
-- Node.js instalado (versão recomendada: 20.x ou superior).
-- npm instalado.
+- Node.js (versão recomendada: 20.x)
+- Expo CLI
+- Yarn ou npm
 
 ### Passos:
 
 #### Clone este repositório:
 
 ```bash
-git clone https://github.com/Fiap-FSD/tech-3.git
-cd tech-3
+git clone https://github.com/Fiap-FSD/tech-4.git
+cd tech-4
 ```
 
-#### Instale as bibliotecas:
+#### Instale as dependencia:
 
 No terminal do projeto, rode:
 
 ```bash
+ yarn install
+  # ou
  npm install
 ```
 
 #### Rodando Localmente:
 
-No terminal do projeto, rode:
+Inicie o servidor de desenvolvimento:
 
 ```bash
- npm run dev
+ expo start
 ```
 
 ### Fluxo de Navegação
