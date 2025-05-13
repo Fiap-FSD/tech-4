@@ -39,6 +39,8 @@ export type RootStackParamList = {
   Home: undefined;
   PostDetail: { id: string }; 
   EditPostScreen: { postId: string };
-  DocenteDetail: { id: string }; 
+  EditAlunoScreen: { alunoId: string };
   AlunoDetail: { id: string };
+  EditDocenteScreen: { professorId: string };
+  DocenteDetail: { id: string }; 
 };

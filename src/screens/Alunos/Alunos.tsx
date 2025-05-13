@@ -119,7 +119,7 @@ export default function AlunosScreen() {
                   <TouchableOpacity onPress={() => handleRemove(item._id)}>
                     <AntDesign name="delete" size={24} color="red" />
                   </TouchableOpacity>
-                  <TouchableOpacity onPress={() => navigation.navigate("EditPostScreen", { postId: item._id })}>
+                  <TouchableOpacity onPress={() => navigation.navigate("EditAlunoScreen", { alunoId: item._id })}>
                     <AntDesign name="edit" size={24} color="blue" />
                   </TouchableOpacity>
                 </View>
