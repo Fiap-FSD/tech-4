@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, ActivityIndicator } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, ActivityIndicator, KeyboardAvoidingView, ScrollView, Platform } from 'react-native';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import axios from 'axios';
@@ -35,53 +35,60 @@ const LoginScreen = () => {
   };
 
   return (
-    <View style={loginStyles.container}>
-      <Text style={loginStyles.title}>Bem-vindo ao Blog Posts</Text>
-      <Text style={loginStyles.subtitle}>
-        Descubra histórias incríveis, novidades do mundo tech e muito mais!
-      </Text>
-
-      <Formik
-        initialValues={{ email: '', password: '' }}
-        validationSchema={validationSchema}
-        onSubmit={handleLogin}
+    <KeyboardAvoidingView
+      style={{ flex: 1}}
+      behavior={Platform.OS === "ios" ? "padding" : "height"}
+      keyboardVerticalOffset={10}
+    >
+      <ScrollView
+        contentContainerStyle={loginStyles.container}
+        keyboardShouldPersistTaps="handled"
       >
-        {({ handleChange, handleBlur, handleSubmit, values, errors, touched, isSubmitting }) => (
-          <View style={loginStyles.form}>
-            <TextInput
-              style={loginStyles.input}
-              placeholder="E-mail"
-              onChangeText={handleChange('email')}
-              onBlur={handleBlur('email')}
-              value={values.email}
-              keyboardType="email-address"
-              autoCapitalize="none"
-            />
-            {touched.email && errors.email && <Text style={loginStyles.error}>{errors.email}</Text>}
-
-            <TextInput
-              style={loginStyles.input}
-              placeholder="Senha"
-              onChangeText={handleChange('password')}
-              onBlur={handleBlur('password')}
-              value={values.password}
-              secureTextEntry
-            />
-            {touched.password && errors.password && <Text style={loginStyles.error}>{errors.password}</Text>}
-
-            {error ? <Text style={loginStyles.error}>{error}</Text> : null}
-
-            <TouchableOpacity style={loginStyles.button} onPress={() => handleSubmit()} disabled={isSubmitting}>
-              {isSubmitting ? (
-                <ActivityIndicator color="#fff" />
-              ) : (
-                <Text style={loginStyles.buttonText}>Entrar</Text>
-              )}
-            </TouchableOpacity>
-          </View>
-        )}
-      </Formik>
-    </View>
+        
+          <Text style={loginStyles.title}>Bem-vindo ao Blog Posts</Text>
+          <Text style={loginStyles.subtitle}>
+            Descubra histórias incríveis, novidades do mundo tech e muito mais!
+          </Text>
+          <Formik
+            initialValues={{ email: '', password: '' }}
+            validationSchema={validationSchema}
+            onSubmit={handleLogin}
+          >
+            {({ handleChange, handleBlur, handleSubmit, values, errors, touched, isSubmitting }) => (
+              <View style={loginStyles.form}>
+                <TextInput
+                  style={loginStyles.input}
+                  placeholder="E-mail"
+                  onChangeText={handleChange('email')}
+                  onBlur={handleBlur('email')}
+                  value={values.email}
+                  keyboardType="email-address"
+                  autoCapitalize="none"
+                />
+                {touched.email && errors.email && <Text style={loginStyles.error}>{errors.email}</Text>}
+                <TextInput
+                  style={loginStyles.input}
+                  placeholder="Senha"
+                  onChangeText={handleChange('password')}
+                  onBlur={handleBlur('password')}
+                  value={values.password}
+                  secureTextEntry
+                />
+                {touched.password && errors.password && <Text style={loginStyles.error}>{errors.password}</Text>}
+                {error ? <Text style={loginStyles.error}>{error}</Text> : null}
+                <TouchableOpacity style={loginStyles.button} onPress={() => handleSubmit()} disabled={isSubmitting}>
+                  {isSubmitting ? (
+                    <ActivityIndicator color="#fff" />
+                  ) : (
+                    <Text style={loginStyles.buttonText}>Entrar</Text>
+                  )}
+                </TouchableOpacity>
+              </View>
+            )}
+          </Formik>
+        
+      </ScrollView>
+    </KeyboardAvoidingView>
   );
 };
 

@@ -92,7 +92,7 @@ export default function Header() {
 
             <TouchableOpacity style={styles.menuItem} onPress={handleLogout}>
               <Text style={styles.menuText}>Logout</Text>
-              <Icon name="log-out" size={22} color="#000" style={{ marginLeft: 8 }} />
+              <Icon name="log-out" size={22} color="red" style={{ marginLeft: 8 }} />
             </TouchableOpacity>
           </Animated.View>
         </>
