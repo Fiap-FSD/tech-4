@@ -35,7 +35,7 @@ export const styles = StyleSheet.create({
   },
   menuContainer: {
     position: "absolute",
-    top: 90, // ou ajuste conforme o visual exato do header
+    top: 95, // ou ajuste conforme o visual exato do header
     bottom: 0,
     height: Dimensions.get("window").height - 90,
     width: SCREEN_WIDTH * 0.6,
@@ -54,7 +54,6 @@ export const styles = StyleSheet.create({
     borderBottomColor: "#eee",
     flexDirection: "row",
     alignItems: "center",
-    paddingVertical: 12,
     paddingHorizontal: 16,
   },
   menuText: {
