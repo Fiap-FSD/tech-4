@@ -2,17 +2,18 @@
   <img src="./assets/Fiap-logo.jpg" width="400" /></a>
 </p>
 
-# ✨ Criação do Front-End Mobile do Blog Post
+# ✨ Blog Post App - Front-End Mobile
 
-Este é um projeto de aplicativo de blog onde os usuários podem criar, editar e visualizar posts, professores e alunos. A aplicação foi construída utilizando o framework Expo, baseado em React Native, na linguagem TypeScript e Axios API para chamadas a APIs externas, além de autenticação com JWT armazenado em asyncstorage nativo. O design do projeto segue uma arquitetura moderna e modular, com foco na escalabilidade e na experiência do usuário.
+Aplicativo mobile de blog desenvolvido com React Native, Expo e TypeScript. Permite que usuários criem, editem e visualizem posts, além de interagir com professores e alunos. A aplicação utiliza autenticação via JWT armazenado com AsyncStorage e segue uma arquitetura modular e escalável.
 
 Será apresentada a maneira de execução de cada step do projeto contendo informações cruciais sobre como configurar, usar e contribuir com o projeto.
 
 ## 🎯 Objetivos do Projeto
 
-- Desenvolver uma interface gráfica para aplicação de blogging, utilizando React Native.
-- Aplicação deve ser acessível e fácil de usar.
-- Implementar o uso de endpoints REST para permitir a interação entre os usuários e o conteúdo do blog.
+- Desenvolver uma interface gráfica para uma aplicação de blogging utilizando React Native.
+- Garantir que a aplicação seja acessível e fácil de usar.
+- Implementar autenticação segura com JWT.
+- Consumir APIs externas para gerenciamento de posts, usuários e interações.
 
 ## 🛠️ Ferramentas Utilizadas
 
@@ -31,112 +32,141 @@ A equipe utilizou as seguintes ferramentas durante o desenvolvimento do projeto:
 - **Axios**:  Biblioteca usada para fazer requisições HTTP e buscar dados de uma API externa. O Axios foi utilizado para buscar os posts, docentes e alunos do servidor, além de enviar as informações do usuário, permitindo uma integração fluida com a API do backend.
 
 
-## 🏗️ Arquitetura da Aplicação
+## 🧱 Arquitetura da Aplicação
+A arquitetura do projeto segue o padrão do React Native com Expo, voltado para o desenvolvimento de aplicações mobile nativas multiplataforma (Android e iOS), utilizando TypeScript. A aplicação é estruturada de forma modular e escalável, promovendo desenvolvimento orientado a componentes, com foco em reutilização de código, separação de responsabilidades e organização eficiente.
 
-A arquitetura da aplicação foi projetada de forma modular e escalável, com separação clara entre responsabilidades. A seguir, os principais aspectos da organização do projeto:
+A utilização do Expo simplifica o gerenciamento de bibliotecas nativas e permite um ciclo de desenvolvimento rápido e otimizado. A arquitetura também faz uso do React Navigation, proporcionando uma navegação fluida entre telas, com suporte a pilhas de navegação, abas, rotas dinâmicas e parâmetros tipados com segurança via TypeScript.
 
-- **Organização por funcionalidades**: O projeto segue uma estrutura baseada em pastas funcionais, onde cada feature (Login, Home, Profile, etc.) possui sua própria pasta contendo a tela (``.tsx``) e o arquivo de estilos (``styles.ts``).
+Essa abordagem melhora tanto a experiência de desenvolvimento quanto a experiência do usuário, oferecendo interfaces responsivas, navegação intuitiva e comunicação eficiente com APIs externas.
 
-- **Componentização**: Elementos reutilizáveis da interface, como o ``Header``, estão localizados na pasta ``components/``. Isso promove reutilização de código e facilita a manutenção da interface.
+## 📐 Camadas e Estrutura
+Apresentação (UI): Componentes React Native responsáveis pela interface gráfica e interação com o usuário.
 
-- **Gerenciamento de estado com Context API**: A pasta ``contexts/`` contém a lógica de autenticação compartilhada entre as telas, utilizando o padrão de Context API do React para controlar o estado do usuário logado e seu perfil (professor ou aluno).
+Serviços: Módulos que encapsulam chamadas à API utilizando Axios, facilitando a comunicação com o back-end.
 
-- **Navegação centralizada**: Toda a navegação entre telas é gerenciada pelo React Navigation, inicializado no arquivo ``App.tsx``. Isso garante um fluxo unificado entre as views.
+Gerenciamento de Estado: Utilização de contextos e hooks personalizados para gerenciar o estado da aplicação de forma eficiente.
 
-- **Integração com Backend**: A comunicação com o backend é feita por meio da biblioteca Axios (em arquivos de serviços que podem ser incluídos posteriormente), permitindo que as telas realizem chamadas autenticadas à API.
+Autenticação: Implementação de autenticação baseada em JWT, com tokens armazenados de forma segura no AsyncStorage nativo.
 
-- **Tipagem com TypeScript:**: A pasta ``types/`` centraliza as interfaces e tipos utilizados ao longo da aplicação, promovendo consistência e evitando erros comuns.
-
-### 📖 Estrutura dos diretórios:
-
-A estrutura utilizada segue as convenções do Next.js para separação de componentes, páginas e contextos, mantendo o código modular e escalável.
-
+## 🗂️ Estrutura de Pastas
 ```
-📦tech-4  
- ┣ 📂assets
- ┃ ┣ 📜adaptive-icon.png
- ┃ ┣ 📜favicon.png
- ┃ ┣ 📜Fiap-logo.jpg
- ┃ ┣ 📜icon.png
- ┃ ┗ 📜splash-icon.png
- ┣ 📂src
- ┃ ┣ 📂components
- ┃ ┃ ┗ 📜Header.tsx
- ┃ ┣ 📂contexts
- ┃ ┃ ┗ 📜AuthContext.tsx
- ┃ ┣ 📂screens
- ┃ ┃ ┣ 📂Home
- ┃ ┃ ┃ ┣ 📜Home.tsx
- ┃ ┃ ┃ ┗ 📜styles.ts
- ┃ ┃ ┣ 📂Login
- ┃ ┃ ┃ ┣ 📜Login.tsx
- ┃ ┃ ┃ ┗ 📜styles.ts
- ┃ ┃ ┣ 📂NewPost
- ┃ ┃ ┃ ┗ 📜NewPost.tsx
- ┃ ┃ ┣ 📂Profile
- ┃ ┃ ┃ ┗ 📜Profile.tsx
- ┃ ┃ ┗ 📂Users
- ┃ ┃ ┃ ┗ 📜Users.tsx
- ┃ ┗ 📂types
- ┃ ┃ ┗ 📜index.ts
- ┣ 📜.gitignore
- ┣ 📜app.json
- ┣ 📜App.tsx
- ┣ 📜index.ts
- ┣ 📜package.json
- ┣ 📜README.md
- ┗ 📜tsconfig.json
+.
+├── src/
+│   ├── components/       # Componentes reutilizáveis de UI
+│   ├── screens/          # Telas da aplicação
+│   ├── services/         # Módulos de acesso à API
+│   ├── contexts/         # Contextos para gerenciamento de estado
+│   ├── hooks/            # Hooks personalizados
+│   └── utils/            # Funções utilitárias
+├── assets/               # Recursos estáticos (imagens, fontes)
+├── App.tsx               # Componente principal da aplicação
+├── app.json              # Configurações do projeto Expo
+├── package.json          # Dependências e scripts do projeto
+└── tsconfig.json         # Configurações do TypeScript
 ```
 
-### 🖌️ Funcionalidades
+## 🔐 Segurança e Autenticação
+A aplicação implementa autenticação de usuários utilizando JWT (JSON Web Tokens). Os tokens são armazenados de forma segura no AsyncStorage, garantindo persistência entre sessões e segurança nas requisições autenticadas.
+
+## ⚙️ Integração com o Back-End
+As comunicações com o back-end são realizadas por meio de requisições HTTP utilizando Axios. Os serviços são organizados em módulos, facilitando a manutenção e a escalabilidade da aplicação.
+
+## 📱 Experiência do Usuário
+O projeto prioriza uma experiência de usuário fluida e responsiva, com interfaces intuitivas e navegação simplificada. O uso de React Native permite a entrega de uma aplicação nativa com desempenho otimizado para dispositivos móveis.
+
+
+## 🖌️ Funcionalidades
 1. Página de Login:
 
   - O usuário pode inserir um email e senha para se autenticar.
   - O sistema redireciona o usuário para a página Home.
 
-2. Página de Criação de Post:
+2. Página principal:
+
+  - A página exibe uma lista de todos os posts disponíveis.
+  - Os usários podem buscar um post espécifíco através de um campo de pesquisa por palavras-chave.
+  - Cada item da lista mostra o título, autor e uma breve descrição do post.
+
+3. Página de leitura de Post:
+
+  - Os usuários podem conferir o conteúdo de um posts específico selecionado previamente
+
+4. Página de Criação de Post:
 
   - Os usuários autenticados podem criar novos posts. O título, conteúdo, autor, introdução, imagem e link de vídeo podem ser definidos.
+  - A criação é feita por meio de um formulário onde o usuário pode preencher os campos.
 
-3. Página de Edição de Post:
+5. Página de Edição de Post:
 
-  - Os usuários podem editar posts existentes acessando a URL /edit/[id], onde [id] é o identificador do post.
+  - Os usuários podem editar posts existentes.
   - A edição é feita por meio de um formulário onde o usuário pode atualizar os campos.
 
-4. Página de Detalhes do Post:
+6. Página de Criação de Professores:
 
-  - A página exibe os detalhes de um post específico, acessado pela URL /post/[id]
+  - Os usuários autenticados podem cadastrar novas contas de professores. Nome, email e senha, podem ser definidos.
+  - A criação é feita por meio de um formulário onde o usuário pode preencher os campos.
 
-## 🚀 Como rodar o projeto
+7. Página de Edição de Professores:
+
+  - Os usuários podem editar contas de professores existentes.
+  - A edição é feita por meio de um formulário onde o usuário pode atualizar os campos.
+8. Página de listagem de Professores:
+
+  - Os usuários podem conferir as informações de todos os professores.
+
+9. Página de Criação de Alunos:
+
+  - Os usuários autenticados podem cadastrar novas contas de Alunos. Nome, email e senha, podem ser definidos.
+  - A criação é feita por meio de um formulário onde o usuário pode preencher os campos.
+
+10. Página de Edição de Alunos:
+
+  - Os usuários podem editar contas de alunos existentes.
+  - A edição é feita por meio de um formulário onde o usuário pode atualizar os campos.
+
+11. Página de listagem de Alunos:
+
+  - Os usuários podem conferir as informações de todos os alunos.
+
+12. Página Administrativa
+
+  - A página exibe uma lista de todos os posts disponíveis, com opções para editar e excluir cada post.
+  - Os usários podem buscar um post espécifíco através de um campo de pesquisa por palavras-chave.
+  - Cada item da lista mostra o título, autor e uma breve descrição do post.
+
+## 📦 Instalação e Execução
 
 ### Pré-requisitos
 
-- Node.js instalado (versão recomendada: 20.x ou superior).
-- npm instalado.
+- Node.js (versão recomendada: 20.x)
+- Expo CLI
+- Yarn ou npm
 
 ### Passos:
 
 #### Clone este repositório:
 
 ```bash
-git clone https://github.com/Fiap-FSD/tech-3.git
-cd tech-3
+git clone https://github.com/Fiap-FSD/tech-4.git
+cd tech-4
 ```
 
-#### Instale as bibliotecas:
+#### Instale as dependencia:
 
 No terminal do projeto, rode:
 
 ```bash
+ yarn install
+  # ou
  npm install
 ```
 
 #### Rodando Localmente:
 
-No terminal do projeto, rode:
+Inicie o servidor de desenvolvimento:
 
 ```bash
- npm run dev
+ expo start
 ```
 
 ### Fluxo de Navegação
@@ -168,9 +198,12 @@ Outro ponto importante é que a integração com o GitHub permite que o deploy s
 
 ## 📜 Conclusão
 
-Este projeto foi uma excelente oportunidade para aprimorar habilidades no desenvolvimento front-end, utilizando tecnologias modernas e robustas como React.js, Next.js, Axios, TailwindCSS e Styled-components. Durante o desenvolvimento, conseguimos criar uma interface gráfica dinâmica, responsiva e intuitiva para a aplicação de blog, garantindo uma experiência de usuário fluida e uma integração eficiente com a API do back-end.
+O desenvolvimento deste projeto proporcionou à equipe uma experiência completa no ciclo de construção de um aplicativo mobile moderno, desde a concepção até a entrega funcional. Com o uso de ferramentas como Visual Studio Code, GitHub, Expo e React Native, foi possível estruturar uma aplicação escalável e eficiente, com foco em performance e experiência do usuário.
 
-A arquitetura adotada baseada no padrão NextJS que trouxe vantagens significativas, como modularidade, escalabilidade e alta performance, permitindo um desenvolvimento ágil e bem estruturado. Além dessas vantagens, existe a facilidade no deploy do projeto, na vercel, pois oferece uma integração nativa que automatiza grande parte do processo. A integração do Axios facilitou a comunicação com a API, enquanto TailwindCSS e Styled-components garantiram um design coeso, flexível e de fácil manutenção.
+A arquitetura adotada, baseada em módulos bem definidos e com separação clara de responsabilidades, garantiu um código limpo, reutilizável e fácil de manter. A integração com o back-end por meio do Axios e o uso de JWT para autenticação reforçaram os conceitos de segurança e comunicação assíncrona entre cliente e servidor.
 
-O projeto reforçou a importância das boas práticas de desenvolvimento, como controle de versão pelo GitHub, organização modular do código e foco na usabilidade. O resultado é uma aplicação funcional e bem estruturada, pronta para ser utilizada por docentes e alunos, oferecendo um ambiente de leitura e interação intuitivo.
+Além dos aspectos técnicos, o trabalho em equipe foi essencial para o sucesso do projeto. A colaboração via Discord, Github e as boas práticas com pull requests e revisão de código fortaleceram o aprendizado coletivo e simularam um ambiente real de desenvolvimento ágil.
+
+Este projeto representa não apenas a entrega de uma solução funcional, mas também um avanço significativo nas habilidades práticas da equipe em desenvolvimento mobile, integração de APIs, controle de versão e aplicação de boas práticas de arquitetura.
+
 
