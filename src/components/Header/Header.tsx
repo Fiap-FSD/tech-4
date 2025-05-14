@@ -3,6 +3,8 @@ import { View, Text, TouchableOpacity, StyleSheet, Dimensions, TouchableWithoutF
 import { useNavigation } from "@react-navigation/native";
 import { useAuth } from "../../contexts/AuthContext";
 import { styles } from "./styles";
+import Icon from 'react-native-vector-icons/Feather'; 
+
 
 const SCREEN_WIDTH = Dimensions.get("window").width;
 
@@ -28,6 +30,13 @@ export default function Header() {
       }).start();
     }
   };
+
+  const { logout } = useAuth();
+
+  const handleLogout = async () => {
+  await logout();
+  navigation.navigate("Login");
+};
 
   const handleNavigation = (route: string) => {
     toggleMenu();
@@ -64,10 +73,6 @@ export default function Header() {
               </TouchableOpacity>
             )}
 
-            <TouchableOpacity style={styles.menuItem} onPress={() => handleNavigation("Profile")}>
-              <Text style={styles.menuText}>Perfil</Text>
-            </TouchableOpacity>
-
             {isAdmin && (
               <TouchableOpacity style={styles.menuItem} onPress={() => handleNavigation("Docentes")}>
                 <Text style={styles.menuText}>Professores</Text>
@@ -79,6 +84,11 @@ export default function Header() {
                 <Text style={styles.menuText}>Alunos</Text>
               </TouchableOpacity>
             )}
+
+            <TouchableOpacity style={styles.menuItem} onPress={handleLogout}>
+              <Text style={styles.menuText}>Logout</Text>
+              <Icon name="log-out" size={22} color="#000" style={{ marginLeft: 8 }} />
+            </TouchableOpacity>
           </Animated.View>
         </>
       )}
