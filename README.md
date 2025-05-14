@@ -169,32 +169,36 @@ Inicie o servidor de desenvolvimento:
  expo start
 ```
 
-### Fluxo de Navegação
-- A página inicial será carregada automaticamente.
-- Para fazer login, acesse a página /login.
-- Após o login, o usuário será redirecionado para a página home.
-- Para editar um post, acesse /edit/[id], onde [id] é o identificador do post.
-- Para visualizar os detalhes de um post, acesse /post/[id].
+## 🔄 Fluxo de Navegação
 
-### Fluxo de Autenticação
+- A página login será carregada automaticamente.
+- Após a autenticação, o usuário é redirecionado automaticamente conforme o tipo de conta (aluno ou professor):
 
-A autenticação é feita usando JWT. Quando o usuário faz login, o token JWT é armazenado em um cookie e enviado com cada requisição subsequente. Caso o token não seja encontrado ou seja inválido, o usuário será redirecionado para a página de login.
+### 👨‍🎓 Usuário Aluno
 
-#### Abra no seu navegador
+- Redirecionado para a tela de **lista de postagens públicas**.
+- Buscar postagens por palavra-chave utilizando a **barra de pesquisa**.
+- Pode visualizar os **detalhes de um post** ao selecionar um item da lista.
+- Não possui acesso a áreas administrativas (CRUD de usuários e posts).
 
-Com o link que aparecerá no seu terminal, copie e cole no seu navegador.
+### 👨‍🏫 Usuário Professor (Administrador)
 
-## 💥 Deploy
+- Redirecionado para a tela **dashboard administrativa**.
+- Buscar postagens por palavra-chave utilizando a **barra de pesquisa**.
+- Pode realizar as seguintes ações:
+  - Criar, editar e excluir **postagens**.
+- Tem acesso a mais telas no **Header**:
+  - Cadastrar, editar e visualizar **professores** e **alunos**.
 
-O deploy é essencial para disponibilizar a aplicação para os usuários finais, garantindo que qualquer pessoa possa acessá-la diretamente pela internet, sem precisar instalar nada.
 
-Optou-se pela Vercel porque ela possui suporte nativo ao Next.js, o framework utilizado no projeto. Além disso, o processo de deploy é extremamente simples e rápido.
+## 🔐 Fluxo de Autenticação
 
-Outro ponto importante é que a integração com o GitHub permite que o deploy seja automatizado, ou seja, sempre que realizamos um push na branch principal, a Vercel detecta as mudanças, faz o build e atualiza automaticamente a aplicação em produção.
+A autenticação da aplicação é baseada em **JWT (JSON Web Token)**, com o uso da biblioteca `jwt-decode` para interpretar o token. O token é armazenado localmente no **AsyncStorage**, garantindo persistência entre sessões. O token JWT é incluído no **cabeçalho Authorization** de todas as requisições HTTP feitas com o `Axios`, garantindo acesso a **rotas protegidas** com base no tipo de usuário. Se o token não existir, estiver expirado ou for inválido, o usuário é redirecionado automaticamente para a **tela de login** e um alerta pode ser exibido, informando a necessidade de login.
 
-👉 **[Link para o site](https://blog-post-tech3.vercel.app/)**  
+> 🛡️ A combinação de JWT + jwt-decode garante segurança, controle de sessão e diferenciação de permissões entre professores e alunos.
 
 👉 **[Link para o vídeo](https://www.youtube.com/watch?v=bK5arno51pw)**  
+
 
 ## 📜 Conclusão
 
