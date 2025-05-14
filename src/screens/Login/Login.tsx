@@ -81,10 +81,6 @@ const LoginScreen = () => {
           </View>
         )}
       </Formik>
-
-      <TouchableOpacity onPress={() => navigation.navigate('Register')}>
-        <Text style={loginStyles.link}>Não tem uma conta? Cadastre-se aqui</Text>
-      </TouchableOpacity>
     </View>
   );
 };

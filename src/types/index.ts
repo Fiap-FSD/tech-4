@@ -13,6 +13,12 @@ export interface PostFormProps {
   onSubmit: (values: IPost) => Promise<void>;
 }
 
+export interface IFormRegisterUser{
+  email: string;
+  password: string;
+  confirmPassword: string;
+}
+
 export interface IUser{
   _id?: string;
   name: string;

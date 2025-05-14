@@ -18,6 +18,7 @@ import DocenteDetailScreen from './src/screens/DocenteDetail/DocenteDetail';
 import AlunoDetailScreen from './src/screens/AlunoDetail/AlunoDetail';
 import EditDocenteScreen from './src/screens/DocenteEdit';
 import EditAlunoScreen from './src/screens/AlunoEdit';
+import Register from './src/screens/Register/Register';
 
 const Stack = createNativeStackNavigator();
 
@@ -100,6 +101,13 @@ export default function App() {
           <Stack.Screen 
             name="AlunoDetail" 
             component={AlunoDetailScreen}
+            options={({ navigation }) => ({
+              header: () => <Header />
+            })}
+          />
+          <Stack.Screen
+            name="Register"
+            component={Register}
             options={({ navigation }) => ({
               header: () => <Header />
             })}

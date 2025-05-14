@@ -84,6 +84,11 @@ export default function Header() {
                 <Text style={styles.menuText}>Alunos</Text>
               </TouchableOpacity>
             )}
+            {isAdmin && (
+              <TouchableOpacity style={styles.menuItem} onPress={() => handleNavigation("Register")}>
+                <Text style={styles.menuText}>Novo Usuário</Text>
+              </TouchableOpacity>
+            )}
 
             <TouchableOpacity style={styles.menuItem} onPress={handleLogout}>
               <Text style={styles.menuText}>Logout</Text>
