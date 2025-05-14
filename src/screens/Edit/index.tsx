@@ -4,12 +4,12 @@ import axios from "axios";
 import { IPost } from "../../types";
 import { useRoute, RouteProp, useNavigation } from "@react-navigation/native"; // Para pegar o id do post
 import PostForm from "../../components/FormPost/FormPost";
-import { Alert, Text } from "react-native";
+import { Alert, KeyboardAvoidingView, Platform, Text } from "react-native";
 
 export default function EditPostScreen() {
   const { accessToken } = useAuth();
   const route = useRoute<RouteProp<{ params: { postId: string } }, 'params'>>();
-  const { postId } = route.params; 
+  const { postId } = route.params;
   const [post, setPost] = useState<IPost | null>(null);
   const navigation = useNavigation();
 
@@ -54,5 +54,13 @@ export default function EditPostScreen() {
     return <Text>Carregando...</Text>; // Exibe um carregando enquanto o post não for carregado
   }
 
-  return <PostForm initialData={post} onSubmit={handleSubmit} />;
+  return (
+    <KeyboardAvoidingView
+      style={{ flex: 1 }}
+      behavior={Platform.OS === "ios" ? "padding" : "height"}
+      keyboardVerticalOffset={10} // ajuste se necessário
+    >
+      <PostForm initialData={post} onSubmit={handleSubmit} />
+    </KeyboardAvoidingView>
+  );
 }

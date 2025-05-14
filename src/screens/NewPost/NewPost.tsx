@@ -4,7 +4,7 @@ import { useAuth } from "../../contexts/AuthContext";
 import axios from "axios";
 import { IPost } from "../../types";
 import PostForm from "../../components/FormPost/FormPost";
-import { Alert } from "react-native";
+import { Alert, KeyboardAvoidingView, Platform } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
 export default function NewPostScreen() {
@@ -27,5 +27,13 @@ export default function NewPostScreen() {
     }
   };
 
-  return <PostForm onSubmit={handleSubmit} />;
+  return (
+    <KeyboardAvoidingView
+      style={{ flex: 1 }}
+      behavior={Platform.OS === "ios" ? "padding" : "height"}
+      keyboardVerticalOffset={10} // ajuste se necessário
+    >
+      <PostForm onSubmit={handleSubmit} />
+    </KeyboardAvoidingView>
+  );
 }

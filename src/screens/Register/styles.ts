@@ -52,5 +52,17 @@ export const styles = StyleSheet.create({
     width: "100%",
     color: "#333",
   },
+  button: {
+    backgroundColor: '#3b82f6',
+    borderRadius: 6,
+    padding: 12,
+    alignItems: 'center',
+    marginTop: 10,
+},
+buttonText: {
+    color: '#fff',
+    fontWeight: '600',
+    fontSize: 16,
+},
   
 });

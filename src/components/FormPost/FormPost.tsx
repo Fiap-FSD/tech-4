@@ -17,7 +17,11 @@ const validationSchema = Yup.object({
 
 export default function PostForm({ initialData, onSubmit }: PostFormProps) {
   return (
-    <ScrollView style={styles.container}>
+    <ScrollView
+    style={styles.container}
+    keyboardShouldPersistTaps="handled"
+    contentContainerStyle={{ paddingBottom: 1 }} // para dar espaço extra ao final
+  >
       <Text style={styles.heading}>
         {initialData ? "Editar Post" : "Novo Post"}
       </Text>
