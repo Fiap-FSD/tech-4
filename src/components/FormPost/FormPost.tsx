@@ -1,84 +1,97 @@
-import React, { useState } from "react";
-import { View, Text, TextInput, Button, Alert, ScrollView } from "react-native";
+import React from "react";
+import { View, Text, TextInput, Button, ScrollView, Alert } from "react-native";
+import { Formik } from "formik";
+import * as Yup from "yup";
 import { styles } from "./styles";
 import { PostFormProps } from "../../types";
 
+// Esquema de validação com Yup
+const validationSchema = Yup.object({
+  title: Yup.string().min(3, "O título deve ter pelo menos 3 caracteres").required("Título é obrigatório"),
+  author: Yup.string().required("Autor é obrigatório"),
+  intro: Yup.string().max(150, "A introdução deve ter no máximo 150 caracteres").required("Introdução é obrigatória"),
+  content: Yup.string().min(10, "O conteúdo deve ter pelo menos 10 caracteres").required("Conteúdo é obrigatório"),
+  imageUrl: Yup.string(),
+  videoUrl: Yup.string(),
+});
 
 export default function PostForm({ initialData, onSubmit }: PostFormProps) {
-  const [title, setTitle] = useState(initialData?.title || "");
-  const [author, setAuthor] = useState(initialData?.author || "");
-  const [intro, setIntro] = useState(initialData?.intro || "");
-  const [content, setContent] = useState(initialData?.content || "");
-  const [imageUrl, setImageUrl] = useState(initialData?.imageUrl || "");
-  const [videoUrl, setVideoUrl] = useState(initialData?.videoUrl || "");
-  const [isSubmitting, setIsSubmitting] = useState(false);
-
-  const handleSubmit = async () => {
-    if (!title || !author || !intro || !content) {
-      Alert.alert("Erro", "Preencha todos os campos obrigatórios.");
-      return;
-    }
-
-    setIsSubmitting(true);
-
-    try {
-      await onSubmit({
-        title,
-        author,
-        intro,
-        content,
-        imageUrl,
-        videoUrl,
-      });
-      Alert.alert("Sucesso", initialData ? "Post atualizado com sucesso!" : "Post criado com sucesso!");
-    } catch (error) {
-      console.error("Erro:", error);
-      Alert.alert("Erro", "Não foi possível salvar o post.");
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
-
   return (
     <ScrollView style={styles.container}>
       <Text style={styles.heading}>
         {initialData ? "Editar Post" : "Novo Post"}
       </Text>
 
-      {[
-        { label: "Título", value: title, setter: setTitle },
-        { label: "Autor", value: author, setter: setAuthor },
-        { label: "Introdução", value: intro, setter: setIntro },
-        { label: "URL da Imagem", value: imageUrl, setter: setImageUrl },
-        { label: "URL do Vídeo", value: videoUrl, setter: setVideoUrl },
-      ].map(({ label, value, setter }) => (
-        <View key={label}>
-          <Text style={styles.label}>{label}</Text>
-          <TextInput
-            style={styles.input}
-            value={value}
-            onChangeText={setter}
-            placeholder={`Digite ${label.toLowerCase()}`}
-          />
-        </View>
-      ))}
+      <Formik
+        initialValues={{
+          title: initialData?.title || "",
+          author: initialData?.author || "",
+          intro: initialData?.intro || "",
+          content: initialData?.content || "",
+          imageUrl: initialData?.imageUrl || "",
+          videoUrl: initialData?.videoUrl || "",
+        }}
+        validationSchema={validationSchema}
+        onSubmit={async (values, { setSubmitting, resetForm }) => {
+          try {
+            await onSubmit(values);
+            Alert.alert("Sucesso", initialData ? "Post atualizado com sucesso!" : "Post criado com sucesso!");
+            resetForm();
+          } catch (error) {
+            console.error("Erro:", error);
+            Alert.alert("Erro", "Não foi possível salvar o post.");
+          } finally {
+            setSubmitting(false);
+          }
+        }}
+      >
+        {({ handleChange, handleBlur, handleSubmit, values, errors, touched, isSubmitting }) => (
+          <View>
+            {/* Campos de texto */}
+            {[
+              { label: "Título", name: "title" as const },
+              { label: "Autor", name: "author" as const },
+              { label: "Introdução", name: "intro" as const },
+              { label: "URL da Imagem", name: "imageUrl" as const },
+              { label: "URL do Vídeo", name: "videoUrl" as const },
+            ].map(({ label, name }) => (
+              <View key={name}>
+                <Text style={styles.label}>{label}</Text>
+                <TextInput
+                  style={styles.input}
+                  value={values[name]}
+                  onChangeText={handleChange(name)}
+                  onBlur={handleBlur(name)}
+                  placeholder={`Digite ${label.toLowerCase()}`}
+                />
+                {touched[name] && errors[name] && (
+                  <Text style={styles.error}>{errors[name]}</Text>
+                )}
+              </View>
+            ))}
 
-      <Text style={styles.label}>Conteúdo</Text>
-      <TextInput
-        style={[styles.input, { height: 100 }]}
-        value={content}
-        onChangeText={setContent}
-        placeholder="Digite o conteúdo"
-        multiline
-      />
+            {/* Campo conteúdo */}
+            <Text style={styles.label}>Conteúdo</Text>
+            <TextInput
+              style={[styles.input, { height: 100 }]}
+              value={values.content}
+              onChangeText={handleChange("content")}
+              onBlur={handleBlur("content")}
+              placeholder="Digite o conteúdo"
+              multiline
+            />
+            {touched.content && errors.content && (
+              <Text style={styles.error}>{errors.content}</Text>
+            )}
 
-      <Button
-        title={isSubmitting ? "Salvando..." : "Salvar"}
-        onPress={handleSubmit}
-        disabled={isSubmitting}
-      />
+            <Button
+              title={isSubmitting ? "Salvando..." : "Salvar"}
+              onPress={handleSubmit as any}
+              disabled={isSubmitting}
+            />
+          </View>
+        )}
+      </Formik>
     </ScrollView>
   );
 }
-
-

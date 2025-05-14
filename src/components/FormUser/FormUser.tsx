@@ -1,70 +1,80 @@
-import React, { useState } from "react";
+import React from "react";
 import { View, Text, TextInput, Button, Alert, ScrollView } from "react-native";
+import { Formik } from "formik";
+import * as Yup from "yup";
 import { styles } from "./styles";
 import { UserFormProps } from "../../types";
 
+const validationSchema = Yup.object({
+  name: Yup.string().required("Nome é obrigatório"),
+  currentPassword: Yup.string(),
+  password: Yup.string()
+    .min(6, "A nova senha deve ter pelo menos 6 caracteres")
+    .when("currentPassword", {
+      is: (val: string) => !!val?.length, // se currentPassword estiver preenchida
+      then: (schema) => schema.required("Nova senha é obrigatória"),
+      otherwise: (schema) => schema.notRequired(),
+    }),
+});
 
-export default function PostForm({ initialData, onSubmit }: UserFormProps) {
-  const [name, setName] = useState(initialData?.name || "");
-  const [email, setEmail] = useState(initialData?.email || "");
-  const [role, setRole] = useState(initialData?.role || "");
-  const [senha, setSenha] = useState(initialData?.senha || "");
-  const [isSubmitting, setIsSubmitting] = useState(false);
-
-  const handleSubmit = async () => {
-    if (!name || !email || !role || !senha ) {
-      Alert.alert("Erro", "Preencha todos os campos obrigatórios.");
-      return;
-    }
-
-    setIsSubmitting(true);
-
-    try {
-      await onSubmit({
-        name,
-        email,
-        role,
-        senha,
-      });
-      Alert.alert("Sucesso", initialData ? "Usuário atualizado com sucesso!" : "Usupario criado com sucesso!");
-    } catch (error) {
-      console.error("Erro:", error);
-      Alert.alert("Erro", "Não foi possível criar o usuário.");
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
-
+export default function UserForm({ initialData, onSubmit }: UserFormProps) {
   return (
     <ScrollView style={styles.container}>
       <Text style={styles.heading}>
         {initialData ? "Editar Usuário" : "Novo Usuário"}
       </Text>
 
-      {[
-        { label: "Nome", value: name, setter: setName },
-        { label: "Email", value: email, setter: setEmail },
-        { label: "Role", value: role, setter: setRole },
-        { label: "Senha", value: senha, setter: setSenha }
-      ].map(({ label, value, setter }) => (
-        <View key={label}>
-          <Text style={styles.label}>{label}</Text>
-          <TextInput
-            style={styles.input}
-            value={value}
-            onChangeText={setter}
-            placeholder={`Digite ${label.toLowerCase()}`}
-          />
-        </View>
-      ))}
+      <Formik
+        initialValues={{
+          name: initialData?.name || "",
+          currentPassword: "",
+          password: "",
+        }}
+        validationSchema={validationSchema}
+        onSubmit={async (values, { setSubmitting, resetForm }) => {
+          try {
+            await onSubmit(values);
+            Alert.alert("Sucesso", initialData ? "Usuário atualizado com sucesso!" : "Usuário criado com sucesso!");
+            resetForm();
+          } catch (error) {
+            console.error("Erro:", error);
+            Alert.alert("Erro", "Não foi possível salvar o usuário.");
+          } finally {
+            setSubmitting(false);
+          }
+        }}
+      >
+        {({ handleChange, handleBlur, handleSubmit, values, errors, touched, isSubmitting }) => (
+          <View>
+            {[
+              { label: "Nome", name: "name" as const },
+              { label: "Senha Atual", name: "currentPassword" as const, secure: true },
+              { label: "Nova Senha", name: "password" as const, secure: true },
+            ].map(({ label, name, secure }) => (
+              <View key={name}>
+                <Text style={styles.label}>{label}</Text>
+                <TextInput
+                  style={styles.input}
+                  value={values[name]}
+                  onChangeText={handleChange(name)}
+                  onBlur={handleBlur(name)}
+                  placeholder={`Digite ${label.toLowerCase()}`}
+                  secureTextEntry={secure}
+                />
+                {touched[name] && errors[name] && (
+                  <Text style={styles.error}>{errors[name]}</Text>
+                )}
+              </View>
+            ))}
 
-      <Button
-        title={isSubmitting ? "Salvando..." : "Salvar"}
-        onPress={handleSubmit}
-        disabled={isSubmitting}
-      />
+            <Button
+              title={isSubmitting ? "Salvando..." : "Salvar"}
+              onPress={handleSubmit as any}
+              disabled={isSubmitting}
+            />
+          </View>
+        )}
+      </Formik>
     </ScrollView>
   );
 }
-
-

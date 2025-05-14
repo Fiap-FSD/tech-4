@@ -21,9 +21,16 @@ export interface IUser{
   senha: string;
 }
 
+export interface IUserEdit{
+  _id?: string;
+  name: string;
+  currentPassword: string;
+  password: string;
+}
+
 export interface UserFormProps {
-  initialData?: IUser;
-  onSubmit: (values: IUser) => Promise<void>;
+  initialData?: IUserEdit;
+  onSubmit: (values: IUserEdit) => Promise<void>;
 }
 
 export interface IAuthContextProps {
