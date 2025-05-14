@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useAuth } from "../../contexts/AuthContext";
 import axios from "axios";
-import { IUser } from "../../types";
+import { IUser, IUserEdit } from "../../types";
 import { useRoute, RouteProp, useNavigation } from "@react-navigation/native"; 
 import UserForm from "../../components/FormUser/FormUser";
 import { ActivityIndicator, Alert } from "react-native";
@@ -32,7 +32,7 @@ export default function EditAlunoScreen() {
     loadAluno();
   }, [alunoId]);
 
-  const handleSubmit = async (values: IUser) => {
+  const handleSubmit = async (values: IUserEdit) => {
     try {
       
       await axios.put(`https://blog-posts-hori.onrender.com/user/${alunoId}`, values, {

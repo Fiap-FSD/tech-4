@@ -35,7 +35,7 @@ export interface IUserEdit{
 }
 
 export interface UserFormProps {
-  initialData?: IUserEdit;
+  initialData?: IUser;
   onSubmit: (values: IUserEdit) => Promise<void>;
 }
 

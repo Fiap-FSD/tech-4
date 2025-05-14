@@ -13,7 +13,7 @@ export default function AlunosScreen() {
   
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
   
-  const { accessToken, isAuthenticated, isAdmin } = useAuth();
+  const { accessToken, isAdmin } = useAuth();
   const [alunos, setAlunos] = useState<any[]>([]);
   const [filteredAlunos, setFilteredAlunos] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);

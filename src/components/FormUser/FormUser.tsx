@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, TextInput, Button, Alert, ScrollView } from "react-native";
+import { View, Text, TextInput, Button, Alert, ScrollView, TouchableOpacity, ActivityIndicator } from "react-native";
 import { Formik } from "formik";
 import * as Yup from "yup";
 import { styles } from "./styles";
@@ -67,11 +67,13 @@ export default function UserForm({ initialData, onSubmit }: UserFormProps) {
               </View>
             ))}
 
-            <Button
-              title={isSubmitting ? "Salvando..." : "Salvar"}
-              onPress={handleSubmit as any}
-              disabled={isSubmitting}
-            />
+            <TouchableOpacity style={styles.button} onPress={() => handleSubmit()} disabled={isSubmitting}>
+              {isSubmitting ? (
+                <ActivityIndicator color="#fff" />
+              ) : (
+                <Text style={styles.buttonText}>Salvar</Text>
+              )}
+            </TouchableOpacity>
           </View>
         )}
       </Formik>

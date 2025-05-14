@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, TextInput, Button, ScrollView, Alert } from "react-native";
+import { View, Text, TextInput, Button, ScrollView, Alert, TouchableOpacity, ActivityIndicator } from "react-native";
 import { Formik } from "formik";
 import * as Yup from "yup";
 import { styles } from "./styles";
@@ -18,10 +18,10 @@ const validationSchema = Yup.object({
 export default function PostForm({ initialData, onSubmit }: PostFormProps) {
   return (
     <ScrollView
-    style={styles.container}
-    keyboardShouldPersistTaps="handled"
-    contentContainerStyle={{ paddingBottom: 1 }} // para dar espaço extra ao final
-  >
+      style={styles.container}
+      keyboardShouldPersistTaps="handled"
+      contentContainerStyle={{ paddingBottom: 1 }} // para dar espaço extra ao final
+    >
       <Text style={styles.heading}>
         {initialData ? "Editar Post" : "Novo Post"}
       </Text>
@@ -88,11 +88,20 @@ export default function PostForm({ initialData, onSubmit }: PostFormProps) {
               <Text style={styles.error}>{errors.content}</Text>
             )}
 
-            <Button
-              title={isSubmitting ? "Salvando..." : "Salvar"}
-              onPress={handleSubmit as any}
+            <TouchableOpacity
+              style={[
+                styles.button,
+                (isSubmitting) && { backgroundColor: "#aaa" }, // estilo de botão desativado
+              ]}
+              onPress={() => handleSubmit()}
               disabled={isSubmitting}
-            />
+            >
+              {isSubmitting ? (
+                <ActivityIndicator color="#fff" />
+              ) : (
+                <Text style={styles.buttonText}>Cadastrar</Text>
+              )}
+            </TouchableOpacity>
           </View>
         )}
       </Formik>
