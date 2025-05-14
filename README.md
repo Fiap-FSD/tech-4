@@ -167,6 +167,8 @@ Inicie o servidor de desenvolvimento:
 
 ```bash
  expo start
+  # ou
+ npm run start
 ```
 
 ## 🔄 Fluxo de Navegação
