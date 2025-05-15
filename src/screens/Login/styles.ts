@@ -61,24 +61,23 @@ export const loginStyles = StyleSheet.create({
         textDecorationLine: 'underline',
     },
      showPasswordButton: {
-    marginTop: 10,
-    alignSelf: 'flex-end',
-  },
-  showPasswordText: {
-    color: '#007BFF',
-    fontSize: 14,
-  },
-
-  eyeIcon: {
-  position: 'absolute',
-  right: 10,
-  height: '100%',
-  justifyContent: 'center',
-  alignItems: 'center',
-},
-passwordWrapper: {
-  position: 'relative',
-  justifyContent: 'center',
-  marginBottom: 10,
-},
+        marginTop: 10,
+        alignSelf: 'flex-end',
+    },
+    showPasswordSymbol: {
+        fontSize: 20,
+        marginBottom: 10,
+    },
+    eyeIcon: {
+        position: 'absolute',
+        right: 10,
+        height: '100%',
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    passwordWrapper: {
+        position: 'relative',
+        justifyContent: 'center',
+        marginBottom: 10,
+    },
 });

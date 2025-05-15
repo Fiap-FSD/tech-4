@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { View, Text, TextInput, Button, Alert, ScrollView, TouchableOpacity, ActivityIndicator } from "react-native";
+import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import { Formik } from "formik";
 import * as Yup from "yup";
 import { styles } from "./styles";
@@ -80,9 +81,12 @@ export default function UserForm({ initialData, onSubmit }: UserFormProps) {
                       }))
                     }
                   >
-                    <Text style={styles.showPasswordText}>
-                      {showPasswords[name] ? "Ocultar" : "Mostrar"}
-                    </Text>
+                    <MaterialCommunityIcons
+                      name={showPasswords[name]? 'eye-off' : 'eye'}
+                      style={styles.showPasswordSymbol}
+                      size={24}
+                      color="#111827" 
+                  /> 
                   </TouchableOpacity>
                 )}
 

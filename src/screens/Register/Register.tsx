@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { View, Text, TextInput, ScrollView, Alert, ActivityIndicator, TouchableOpacity, KeyboardAvoidingView, Platform } from "react-native";
+import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import { Formik } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
@@ -133,20 +134,25 @@ export default function Register({ navigation }: any) {
                             <View style={styles.field}>
                                 <Text style={styles.label}>Senha</Text>
                                 <View style={styles.passwordWrapper}>
-                                <TextInput
-                                    style={styles.inputSenha}
-                                    placeholder="Digite sua senha"
-                                    secureTextEntry={!showPassword}
-                                    onChangeText={handleChange("password")}
-                                    onBlur={handleBlur("password")}
-                                    value={values.password}
-                                />
-                                <TouchableOpacity
-                                    onPress={() => setShowPassword((prev) => !prev)}
-                                    style={styles.eyeIcon}
-                                >
-                                    <Text style={styles.eyeText}>{showPassword ? "Mostrar" : "Ocultar"}</Text>
-                                </TouchableOpacity>
+                                    <TextInput
+                                        style={styles.inputSenha}
+                                        placeholder="Digite sua senha"
+                                        secureTextEntry={!showPassword}
+                                        onChangeText={handleChange("password")}
+                                        onBlur={handleBlur("password")}
+                                        value={values.password}
+                                    />
+                                    <TouchableOpacity
+                                        onPress={() => setShowPassword((prev) => !prev)}
+                                        style={styles.eyeIcon}
+                                    >                                    
+                                        <MaterialCommunityIcons
+                                            name={showPassword ? 'eye-off' : 'eye'}
+                                            style={styles.showPasswordSymbol}
+                                            size={24}
+                                            color="#111827" 
+                                        />  
+                                    </TouchableOpacity>
                                 </View>
                                 {touched.password && errors.password && (
                                     <Text style={styles.error}>{errors.password}</Text>
@@ -154,28 +160,32 @@ export default function Register({ navigation }: any) {
                             </View>
 
                             {/* Campo Confirmar Senha */}
-                            <View style={styles.passwordWrapper}>
-                            {/* <Text style={styles.label}>Confirme sua senha</Text> */}
-
-                            <TextInput
-                                style={styles.inputSenha}
-                                placeholder="Confirme sua senha"
-                                secureTextEntry={!showConfirmPassword}
-                                onChangeText={handleChange("confirmPassword")}
-                                onBlur={handleBlur("confirmPassword")}
-                                value={values.confirmPassword}
-                            />
-
-                            <TouchableOpacity
-                                onPress={() => setShowConfirmPassword((prev) => !prev)}
-                                style={styles.eyeIcon}
-                            >
-                                <Text style={styles.eyeText}>{showConfirmPassword ? "Mostrar" : "Ocultar"}</Text>
-                            </TouchableOpacity>
-
-                            {touched.confirmPassword && errors.confirmPassword && (
-                                <Text style={styles.error}>{errors.confirmPassword}</Text>
-                            )}
+                            <View style={styles.field}>                                
+                                <Text style={styles.label}>Confirmar Senha</Text>
+                                <View style={styles.passwordWrapper}>
+                                    <TextInput
+                                        style={styles.inputSenha}
+                                        placeholder="Confirme sua senha"
+                                        secureTextEntry={!showConfirmPassword}
+                                        onChangeText={handleChange("confirmPassword")}
+                                        onBlur={handleBlur("confirmPassword")}
+                                        value={values.confirmPassword}
+                                    />
+                                    <TouchableOpacity
+                                        onPress={() => setShowConfirmPassword((prev) => !prev)}
+                                        style={styles.eyeIcon}
+                                    >
+                                        <MaterialCommunityIcons
+                                            name={showPassword ? 'eye-off' : 'eye'}
+                                            style={styles.showPasswordSymbol}
+                                            size={24}
+                                            color="#111827"
+                                        />
+                                    </TouchableOpacity>
+                                </View>
+                                    {touched.confirmPassword && errors.confirmPassword && (
+                                        <Text style={styles.error}>{errors.confirmPassword}</Text>
+                                    )}
                             </View>
 
                             {error ? <Text style={styles.error}>{error}</Text> : null}

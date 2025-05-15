@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, ActivityIndicator, KeyboardAvoidingView, ScrollView, Platform } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import { useAuth } from '../../contexts/AuthContext';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import axios from 'axios';
-import { useNavigation } from '@react-navigation/native';
-import { useAuth } from '../../contexts/AuthContext';
+import { View, Text, TextInput, TouchableOpacity, ActivityIndicator, KeyboardAvoidingView, ScrollView, Platform } from 'react-native';
+import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import {loginStyles} from './styles';
 
 const validationSchema = Yup.object({
@@ -51,60 +52,63 @@ const LoginScreen = () => {
             Descubra histórias incríveis, novidades do mundo tech e muito mais!
           </Text>
           <Formik
-  initialValues={{ email: '', password: '' }}
-  validationSchema={validationSchema}
-  onSubmit={handleLogin}
->
-  {({ handleChange, handleBlur, handleSubmit, values, errors, touched, isSubmitting }) => (
-    <View style={loginStyles.form}>
-      <TextInput
-        style={loginStyles.input}
-        placeholder="E-mail"
-        onChangeText={handleChange('email')}
-        onBlur={handleBlur('email')}
-        value={values.email}
-        keyboardType="email-address"
-        autoCapitalize="none"
-      />
-      {touched.email && errors.email && (
-        <Text style={loginStyles.error}>{errors.email}</Text>
-      )}
-
-      {/* Campo de senha com botão embutido */}
-      <View style={loginStyles.passwordWrapper}>
+            initialValues={{ email: '', password: '' }}
+            validationSchema={validationSchema}
+            onSubmit={handleLogin}
+          >
+      {({ handleChange, handleBlur, handleSubmit, values, errors, touched, isSubmitting }) => (
+      <View style={loginStyles.form}>
         <TextInput
           style={loginStyles.input}
-          placeholder="Senha"
-          onChangeText={handleChange('password')}
-          onBlur={handleBlur('password')}
-          value={values.password}
-          secureTextEntry={!showPassword}
+          placeholder="E-mail"
+          onChangeText={handleChange('email')}
+          onBlur={handleBlur('email')}
+          value={values.email}
+          keyboardType="email-address"
+          autoCapitalize="none"
         />
-        <TouchableOpacity
-          style={loginStyles.eyeIcon}
-          onPress={() => setShowPassword((prev) => !prev)}
-        >
-          <Text style={loginStyles.showPasswordText}>
-            {showPassword ? 'Ocultar' : 'Mostrar'}
-          </Text>
-        </TouchableOpacity>
-      </View>
-      {touched.password && errors.password && (
-        <Text style={loginStyles.error}>{errors.password}</Text>
-      )}
-
-      {error ? <Text style={loginStyles.error}>{error}</Text> : null}
-
-      <TouchableOpacity style={loginStyles.button} onPress={() => handleSubmit()} disabled={isSubmitting}>
-        {isSubmitting ? (
-          <ActivityIndicator color="#fff" />
-        ) : (
-          <Text style={loginStyles.buttonText}>Entrar</Text>
+        {touched.email && errors.email && (
+          <Text style={loginStyles.error}>{errors.email}</Text>
         )}
-      </TouchableOpacity>
-    </View>
-  )}
-</Formik>
+
+        {/* Campo de senha com botão embutido */}
+        <View style={loginStyles.passwordWrapper}>
+          <TextInput
+            style={loginStyles.input}
+            placeholder="Senha"
+            onChangeText={handleChange('password')}
+            onBlur={handleBlur('password')}
+            value={values.password}
+            secureTextEntry={!showPassword}
+          />
+          <TouchableOpacity
+            style={loginStyles.eyeIcon}
+            onPress={() => setShowPassword((prev) => !prev)}
+          >            
+            <MaterialCommunityIcons
+              name={showPassword ? 'eye-off' : 'eye'}
+              style={loginStyles.showPasswordSymbol}
+              size={24}
+              color="#111827" 
+            />            
+          </TouchableOpacity>
+        </View>
+        {touched.password && errors.password && (
+          <Text style={loginStyles.error}>{errors.password}</Text>
+        )}
+
+        {error ? <Text style={loginStyles.error}>{error}</Text> : null}
+
+          <TouchableOpacity style={loginStyles.button} onPress={() => handleSubmit()} disabled={isSubmitting}>
+            {isSubmitting ? (
+              <ActivityIndicator color="#fff" />
+            ) : (
+              <Text style={loginStyles.buttonText}>Entrar</Text>
+            )}
+          </TouchableOpacity>
+        </View>
+        )}
+      </Formik>
         
       </ScrollView>
     </KeyboardAvoidingView>

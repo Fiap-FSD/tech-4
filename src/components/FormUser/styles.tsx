@@ -52,13 +52,14 @@ export const styles = StyleSheet.create({
     textDecorationLine: "underline",
   },
   eyeIcon: {
-  position: 'absolute',
-  right: 10,
-  top: 38, // ajusta conforme altura da label/input
-  padding: 5,
-  zIndex: 1,
-},
- inputContainer: {
+    position: 'absolute',
+    right: 10,
+    top: '50%',
+    transform: [{ translateY: -9 }],
+    padding: 5,
+    zIndex: 1,
+  },
+  inputContainer: {
     flexDirection: "row",
     alignItems: "center",
     marginBottom: 16,
@@ -73,12 +74,11 @@ export const styles = StyleSheet.create({
     fontWeight: "bold",
   },
   passwordWrapper: {
-  position: "relative",
-  justifyContent: "center",
-  marginBottom: 10,
-},
-showPasswordText: {
-  fontSize: 14,
-  color: "#007AFF",
-},
+    position: "relative",
+    justifyContent: "center",
+    marginBottom: 10,
+  },
+  showPasswordSymbol: {
+    fontSize: 20,
+  },
   });
