@@ -15,6 +15,7 @@ const validationSchema = Yup.object({
 const LoginScreen = () => {
   const navigation = useNavigation<any>();
   const [error, setError] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
 
   const { login } = useAuth(); // use isso dentro do componente
 
@@ -48,37 +49,56 @@ const LoginScreen = () => {
       >
         {({ handleChange, handleBlur, handleSubmit, values, errors, touched, isSubmitting }) => (
           <View style={loginStyles.form}>
-            <TextInput
-              style={loginStyles.input}
-              placeholder="E-mail"
-              onChangeText={handleChange('email')}
-              onBlur={handleBlur('email')}
-              value={values.email}
-              keyboardType="email-address"
-              autoCapitalize="none"
-            />
-            {touched.email && errors.email && <Text style={loginStyles.error}>{errors.email}</Text>}
+  <TextInput
+    style={loginStyles.input}
+    placeholder="E-mail"
+    onChangeText={handleChange('email')}
+    onBlur={handleBlur('email')}
+    value={values.email}
+    keyboardType="email-address"
+    autoCapitalize="none"
+  />
+  <Text style={loginStyles.error}>{errors.email}</Text>
 
-            <TextInput
-              style={loginStyles.input}
-              placeholder="Senha"
-              onChangeText={handleChange('password')}
-              onBlur={handleBlur('password')}
-              value={values.password}
-              secureTextEntry
-            />
-            {touched.password && errors.password && <Text style={loginStyles.error}>{errors.password}</Text>}
+  {/* Campo de senha com botão embutido */}
+  <View style={loginStyles.passwordWrapper}>
+    <TextInput
+      style={loginStyles.input}
+      placeholder="Senha"
+      onChangeText={handleChange('password')}
+      onBlur={handleBlur('password')}
+      value={values.password}
+      secureTextEntry={!showPassword}
+    />
+    <TouchableOpacity
+      style={loginStyles.eyeIcon}
+      onPress={() => setShowPassword(!showPassword)}
+    >
+      <Text style={loginStyles.showPasswordText}>
+        {showPassword ? 'Ocultar' : 'Mostrar'}
+      </Text>
+    </TouchableOpacity>
+  </View>
 
-            {error ? <Text style={loginStyles.error}>{error}</Text> : null}
+  {touched.password && errors.password && (
+    <Text style={loginStyles.error}>{errors.password}</Text>
+  )}
 
-            <TouchableOpacity style={loginStyles.button} onPress={() => handleSubmit()} disabled={isSubmitting}>
-              {isSubmitting ? (
-                <ActivityIndicator color="#fff" />
-              ) : (
-                <Text style={loginStyles.buttonText}>Entrar</Text>
-              )}
-            </TouchableOpacity>
-          </View>
+  {error ? <Text style={loginStyles.error}>{error}</Text> : null}
+
+  <TouchableOpacity
+    style={loginStyles.button}
+    onPress={() => handleSubmit()}
+    disabled={isSubmitting}
+  >
+    {isSubmitting ? (
+      <ActivityIndicator color="#fff" />
+    ) : (
+      <Text style={loginStyles.buttonText}>Entrar</Text>
+    )}
+  </TouchableOpacity>
+</View>
+
         )}
       </Formik>
     </View>

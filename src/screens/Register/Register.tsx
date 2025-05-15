@@ -27,6 +27,8 @@ const validationSchema = Yup.object({
 
 export default function Register({ navigation }: any) {
     const [error, setError] = useState("");
+    const [showPassword, setShowPassword] = useState(false);
+    const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
     const handleRegister = async (
         values: IFormRegisterUser,
@@ -130,33 +132,50 @@ export default function Register({ navigation }: any) {
                             {/* Campo Senha */}
                             <View style={styles.field}>
                                 <Text style={styles.label}>Senha</Text>
+                                <View style={styles.passwordWrapper}>
                                 <TextInput
-                                    style={styles.input}
+                                    style={styles.inputSenha}
                                     placeholder="Digite sua senha"
-                                    secureTextEntry
+                                    secureTextEntry={!showPassword}
                                     onChangeText={handleChange("password")}
                                     onBlur={handleBlur("password")}
                                     value={values.password}
                                 />
+                                <TouchableOpacity
+                                    onPress={() => setShowPassword((prev) => !prev)}
+                                    style={styles.eyeIcon}
+                                >
+                                    <Text style={styles.eyeText}>{showPassword ? "Mostrar" : "Ocultar"}</Text>
+                                </TouchableOpacity>
+                                </View>
                                 {touched.password && errors.password && (
                                     <Text style={styles.error}>{errors.password}</Text>
                                 )}
                             </View>
 
                             {/* Campo Confirmar Senha */}
-                            <View style={styles.field}>
-                                <Text style={styles.label}>Confirme sua senha</Text>
-                                <TextInput
-                                    style={styles.input}
-                                    placeholder="Confirme sua senha"
-                                    secureTextEntry
-                                    onChangeText={handleChange("confirmPassword")}
-                                    onBlur={handleBlur("confirmPassword")}
-                                    value={values.confirmPassword}
-                                />
-                                {touched.confirmPassword && errors.confirmPassword && (
-                                    <Text style={styles.error}>{errors.confirmPassword}</Text>
-                                )}
+                            <View style={styles.passwordWrapper}>
+                            {/* <Text style={styles.label}>Confirme sua senha</Text> */}
+
+                            <TextInput
+                                style={styles.inputSenha}
+                                placeholder="Confirme sua senha"
+                                secureTextEntry={!showConfirmPassword}
+                                onChangeText={handleChange("confirmPassword")}
+                                onBlur={handleBlur("confirmPassword")}
+                                value={values.confirmPassword}
+                            />
+
+                            <TouchableOpacity
+                                onPress={() => setShowConfirmPassword((prev) => !prev)}
+                                style={styles.eyeIcon}
+                            >
+                                <Text style={styles.eyeText}>{showConfirmPassword ? "Mostrar" : "Ocultar"}</Text>
+                            </TouchableOpacity>
+
+                            {touched.confirmPassword && errors.confirmPassword && (
+                                <Text style={styles.error}>{errors.confirmPassword}</Text>
+                            )}
                             </View>
 
                             {error ? <Text style={styles.error}>{error}</Text> : null}

@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import { View, Text, TextInput, Button, Alert, ScrollView, TouchableOpacity, ActivityIndicator } from "react-native";
 import { Formik } from "formik";
 import * as Yup from "yup";
 import { styles } from "./styles";
 import { UserFormProps } from "../../types";
+
+
 
 const validationSchema = Yup.object({
   name: Yup.string().required("Nome é obrigatório"),
@@ -18,6 +20,11 @@ const validationSchema = Yup.object({
 });
 
 export default function UserForm({ initialData, onSubmit }: UserFormProps) {
+
+  const [showPasswords, setShowPasswords] = useState({
+  currentPassword: false,
+  password: false,
+});
   return (
     <ScrollView style={styles.container}>
       <Text style={styles.heading}>
@@ -51,16 +58,34 @@ export default function UserForm({ initialData, onSubmit }: UserFormProps) {
               { label: "Senha Atual", name: "currentPassword" as const, secure: true },
               { label: "Nova Senha", name: "password" as const, secure: true },
             ].map(({ label, name, secure }) => (
-              <View key={name}>
+              <View key={name} style={secure ? styles.passwordWrapper : undefined}>
                 <Text style={styles.label}>{label}</Text>
+
                 <TextInput
                   style={styles.input}
                   value={values[name]}
                   onChangeText={handleChange(name)}
                   onBlur={handleBlur(name)}
                   placeholder={`Digite ${label.toLowerCase()}`}
-                  secureTextEntry={secure}
+                  secureTextEntry={secure ? !showPasswords[name] : false}
                 />
+
+                {secure && (
+                  <TouchableOpacity
+                    style={styles.eyeIcon}
+                    onPress={() =>
+                      setShowPasswords((prev) => ({
+                        ...prev,
+                        [name]: !prev[name],
+                      }))
+                    }
+                  >
+                    <Text style={styles.showPasswordText}>
+                      {showPasswords[name] ? "Ocultar" : "Mostrar"}
+                    </Text>
+                  </TouchableOpacity>
+                )}
+
                 {touched[name] && errors[name] && (
                   <Text style={styles.error}>{errors[name]}</Text>
                 )}

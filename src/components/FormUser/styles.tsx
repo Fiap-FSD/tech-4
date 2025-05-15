@@ -41,4 +41,44 @@ export const styles = StyleSheet.create({
       fontSize: 12,
       marginBottom: 8,
     },
+     togglePassword: {
+    marginTop: -32,
+    marginBottom: 16,
+    alignSelf: "flex-end",
+  },
+  togglePasswordText: {
+    color: "#007BFF",
+    fontSize: 14,
+    textDecorationLine: "underline",
+  },
+  eyeIcon: {
+  position: 'absolute',
+  right: 10,
+  top: 38, // ajusta conforme altura da label/input
+  padding: 5,
+  zIndex: 1,
+},
+ inputContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginBottom: 16,
+  },
+  toggleButton: {
+    position: "absolute",
+    right: 10,
+    top: 10,
+  },
+  toggleButtonText: {
+    color: "#007BFF",
+    fontWeight: "bold",
+  },
+  passwordWrapper: {
+  position: "relative",
+  justifyContent: "center",
+  marginBottom: 10,
+},
+showPasswordText: {
+  fontSize: 14,
+  color: "#007AFF",
+},
   });

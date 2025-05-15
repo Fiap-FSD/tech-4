@@ -64,5 +64,35 @@ export const styles = StyleSheet.create({
         fontWeight: '600',
         fontSize: 16,
     },
+    passwordWrapper: {
+        flexDirection: "row",
+        alignItems: "center",
+        borderWidth: 1,
+        borderColor: "#ccc",
+        borderRadius: 5,
+        paddingHorizontal: 10,
+        marginBottom: 10,
+    },
+    inputSenha: {
+    height: 50,
+    borderColor: '#ccc',
+    borderRadius: 8,
+    paddingLeft: 10,
+    paddingRight: 40, 
+  },
+  eyeIcon: {
+    position: 'absolute',
+    right: 10,
+    height: '100%',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+
+  eyeText: {
+  color: '#007AFF',
+  fontSize: 14,
+},
+  
+
 
 });
