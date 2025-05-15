@@ -3,7 +3,7 @@ import { View, Text, TouchableOpacity, StyleSheet, Dimensions, TouchableWithoutF
 import { useNavigation } from "@react-navigation/native";
 import { useAuth } from "../../contexts/AuthContext";
 import { styles } from "./styles";
-import Icon from 'react-native-vector-icons/Feather'; 
+import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 
 
 const SCREEN_WIDTH = Dimensions.get("window").width;
@@ -92,7 +92,7 @@ export default function Header() {
 
             <TouchableOpacity style={styles.menuItem} onPress={handleLogout}>
               <Text style={styles.menuText}>Logout</Text>
-              <Icon name="log-out" size={22} color="red" style={{ marginLeft: 8 }} />
+              <MaterialCommunityIcons name="logout" style={{ marginLeft: 8 }} size={24} color="black" />
             </TouchableOpacity>
           </Animated.View>
         </>
