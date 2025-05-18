@@ -55,5 +55,6 @@ export type RootStackParamList = {
   EditAlunoScreen: { alunoId: string };
   AlunoDetail: { id: string };
   EditDocenteScreen: { professorId: string };
-  DocenteDetail: { id: string }; 
+  DocenteDetail: { id: string };
+  Login: undefined; 
 };
