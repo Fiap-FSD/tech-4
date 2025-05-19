@@ -76,59 +76,60 @@ O projeto prioriza uma experiência de usuário fluida e responsiva, com interfa
 
 
 ## 🖌️ Funcionalidades
-1. Página de Login:
+**1. Página de Login:**
 
   - O usuário pode inserir um email e senha para se autenticar.
   - O sistema redireciona o usuário para a página Home.
 
-2. Página principal:
+**2. Página principal:**
 
   - A página exibe uma lista de todos os posts disponíveis.
   - Os usários podem buscar um post espécifíco através de um campo de pesquisa por palavras-chave.
   - Cada item da lista mostra o título, autor e uma breve descrição do post.
 
-3. Página de leitura de Post:
+**3. Página de leitura de Post:**
 
   - Os usuários podem conferir o conteúdo de um posts específico selecionado previamente
 
-4. Página de Criação de Post:
+**4. Página de Criação de Post:**
 
   - Os usuários autenticados podem criar novos posts. O título, conteúdo, autor, introdução, imagem e link de vídeo podem ser definidos.
   - A criação é feita por meio de um formulário onde o usuário pode preencher os campos.
 
-5. Página de Edição de Post:
+**5. Página de Edição de Post:**
 
   - Os usuários podem editar posts existentes.
   - A edição é feita por meio de um formulário onde o usuário pode atualizar os campos.
 
-6. Página de Criação de Professores:
+**6. Página de Criação de Professores:**
 
   - Os usuários autenticados podem cadastrar novas contas de professores. Nome, email e senha, podem ser definidos.
   - A criação é feita por meio de um formulário onde o usuário pode preencher os campos.
 
-7. Página de Edição de Professores:
+**7. Página de Edição de Professores:**
 
   - Os usuários podem editar contas de professores existentes.
   - A edição é feita por meio de um formulário onde o usuário pode atualizar os campos.
-8. Página de listagem de Professores:
+  - 
+**8. Página de listagem de Professores:**
 
   - Os usuários podem conferir as informações de todos os professores.
 
-9. Página de Criação de Alunos:
+**9. Página de Criação de Alunos:**
 
   - Os usuários autenticados podem cadastrar novas contas de Alunos. Nome, email e senha, podem ser definidos.
   - A criação é feita por meio de um formulário onde o usuário pode preencher os campos.
 
-10. Página de Edição de Alunos:
+**10. Página de Edição de Alunos:**
 
   - Os usuários podem editar contas de alunos existentes.
   - A edição é feita por meio de um formulário onde o usuário pode atualizar os campos.
 
-11. Página de listagem de Alunos:
+**11. Página de listagem de Alunos:**
 
   - Os usuários podem conferir as informações de todos os alunos.
 
-12. Página Administrativa
+**12. Página Administrativa:**
 
   - A página exibe uma lista de todos os posts disponíveis, com opções para editar e excluir cada post.
   - Os usários podem buscar um post espécifíco através de um campo de pesquisa por palavras-chave.
