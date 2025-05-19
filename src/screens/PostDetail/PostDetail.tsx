@@ -26,17 +26,9 @@ export default function PostDetailScreen() {
     }
   }, [id, accessToken, getPostById]);
 
-  const getYouTubeEmbedUrl = (url: string) => {
-    const match = url.match(/(?:\?v=|\/embed\/|\.be\/)([a-zA-Z0-9_-]{11})/);
-    const videoId = match ? match[1] : null;
-    return videoId ? `https://www.youtube.com/embed/${videoId}` : null;
-  };
-
   if (loading) return <ActivityIndicator style={{ marginTop: 40 }} size="large" color={"#007AFF"} />;
   if (error) return <Text style={{ marginTop: 40, textAlign: "center" }}>Erro ao carregar o post.</Text>;
   if (!post) return <Text style={{ marginTop: 40, textAlign: "center" }}>Post não encontrado</Text>;
-
-  const videoEmbedUrl = post.videoUrl ? getYouTubeEmbedUrl(post.videoUrl) : null;
 
   return (
     <ScrollView contentContainerStyle={postDetailStyles.container}>
@@ -55,16 +47,6 @@ export default function PostDetailScreen() {
               style={postDetailStyles.image}
               resizeMode="cover"
             />
-          )}
-
-          {videoEmbedUrl && (
-            <View style={postDetailStyles.videoContainer}>
-              <WebView
-                source={{ uri: videoEmbedUrl }}
-                style={postDetailStyles.video}
-                allowsFullscreenVideo
-              />
-            </View>
           )}
         </View>
       </View>

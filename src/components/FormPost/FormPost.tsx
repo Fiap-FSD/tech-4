@@ -33,7 +33,6 @@ export default function PostForm({ initialData, onSubmit }: PostFormProps) {
           intro: initialData?.intro || "",
           content: initialData?.content || "",
           imageUrl: initialData?.imageUrl || "",
-          videoUrl: initialData?.videoUrl || "",
         }}
         validationSchema={validationSchema}
         onSubmit={async (values, { setSubmitting, resetForm }) => {
@@ -57,7 +56,6 @@ export default function PostForm({ initialData, onSubmit }: PostFormProps) {
               { label: "Autor", name: "author" as const },
               { label: "Introdução", name: "intro" as const },
               { label: "URL da Imagem", name: "imageUrl" as const },
-              { label: "URL do Vídeo", name: "videoUrl" as const },
             ].map(({ label, name }) => (
               <View key={name}>
                 <Text style={styles.label}>{label}</Text>

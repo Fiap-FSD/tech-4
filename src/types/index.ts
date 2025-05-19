@@ -5,7 +5,6 @@ export interface IPost{
   content: string;
   intro: string;
   imageUrl: string;
-  videoUrl: string;
 }
 
 export interface PostFormProps {
