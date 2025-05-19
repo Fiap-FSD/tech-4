@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="./assets/Fiap-logo.jpg" width="400" /></a>
+  <img src="assets/Fiap-logo.jpg" width="400" />
 </p>
 
 # ✨ Blog Post App - Front-End Mobile
