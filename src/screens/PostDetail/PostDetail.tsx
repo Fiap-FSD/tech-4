@@ -5,12 +5,13 @@ import { useAuth } from "../../contexts/AuthContext";
 import { postDetailStyles } from "./styles";
 import { WebView } from "react-native-webview";
 import usePosts from "../../hooks/usePosts";
+import { IPost } from "../../types";
 
 export default function PostDetailScreen() {
   const route = useRoute();
   const { id } = route.params as { id: string };
   const { accessToken } = useAuth();
-  const [post, setPost] = useState<any>(null);
+  const [post, setPost] = useState<IPost>();
   const { getPostById, loading, error } = usePosts(accessToken || "");
   const { width } = useWindowDimensions();
   const isLargeScreen = width > 768;
