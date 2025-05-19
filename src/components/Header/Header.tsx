@@ -5,6 +5,7 @@ import { useAuth } from "../../contexts/AuthContext";
 import { styles } from "./styles";
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import { RootStackParamList } from "../../types";
+import { Alert } from "react-native";
 
 
 const SCREEN_WIDTH = Dimensions.get("window").width;
@@ -35,9 +36,22 @@ export default function Header() {
   const { logout } = useAuth();
 
   const handleLogout = async () => {
-  await logout();
-  navigation.navigate("Login");
-};
+    Alert.alert(
+      "Sair",
+      "Tem certeza que deseja sair?",
+      [
+        { text: "Cancelar", style: "cancel" },
+        {
+          text: "Sair",
+          style: "destructive",
+          onPress: async () => {
+            await logout();
+            navigation.navigate("Login");
+          },
+        },
+      ]
+    );
+  };
 
   const handleNavigation = (route: string) => {
     toggleMenu();

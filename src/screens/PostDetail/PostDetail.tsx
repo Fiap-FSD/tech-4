@@ -49,11 +49,13 @@ export default function PostDetailScreen() {
         </View>
 
         <View style={[postDetailStyles.mediaSection, isLargeScreen && postDetailStyles.mediaSectionLarge]}>
-          <Image
-            source={{ uri: post.imageUrl || "https://via.placeholder.com/300" }}
-            style={postDetailStyles.image}
-            resizeMode="cover"
-          />
+          {post.imageUrl && (
+            <Image
+              source={{ uri: post.imageUrl }}
+              style={postDetailStyles.image}
+              resizeMode="cover"
+            />
+          )}
 
           {videoEmbedUrl && (
             <View style={postDetailStyles.videoContainer}>
