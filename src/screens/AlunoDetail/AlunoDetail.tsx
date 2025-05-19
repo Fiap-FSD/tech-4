@@ -5,12 +5,13 @@ import { useRoute } from "@react-navigation/native";
 import { useAuth } from "../../contexts/AuthContext";
 import { alunoDetailStyles } from "./styles";
 import { WebView } from "react-native-webview";
+import { IUser } from "../../types";
 
 export default function AlunoDetailScreen() {
   const route = useRoute();
   const { id } = route.params as { id: string };
   const { accessToken } = useAuth();
-  const [aluno, setAluno] = useState<any>(null);
+  const [aluno, setAluno] = useState<IUser>();
   const [loading, setLoading] = useState(true);
 
   const fetchAluno = async () => {

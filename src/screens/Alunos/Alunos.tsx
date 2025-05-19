@@ -3,7 +3,7 @@ import { View, Text, FlatList, TouchableOpacity, Image, Alert, ActivityIndicator
 import { useNavigation } from "@react-navigation/native";
 import axios from "axios";
 import { useAuth } from "../../contexts/AuthContext";
-import { RootStackParamList } from "../../types";
+import { IUser, RootStackParamList } from "../../types";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { AntDesign } from "@expo/vector-icons";
 
@@ -14,7 +14,7 @@ export default function AlunosScreen() {
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
   
   const { accessToken, isAdmin } = useAuth();
-  const [alunos, setAlunos] = useState<any[]>([]);
+  const [alunos, setAlunos] = useState<IUser[]>([]);
   const [filteredAlunos, setFilteredAlunos] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState(""); 

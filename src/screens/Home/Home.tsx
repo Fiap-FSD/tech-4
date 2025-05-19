@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { View, Text, FlatList, TouchableOpacity, Image, Alert, ActivityIndicator, TextInput } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { useAuth } from "../../contexts/AuthContext";
-import { homeStyles } from "./styles"; // importando os estilos
+import { homeStyles } from "./styles"; 
 import { RootStackParamList } from "../../types";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { AntDesign } from "@expo/vector-icons";
@@ -11,8 +11,8 @@ import usePosts from "../../hooks/usePosts";
 export default function HomeScreen() {
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
   const { accessToken, isAdmin } = useAuth();
-  const [filteredPosts, setFilteredPosts] = useState<any[]>([]); // Estado para posts filtrados
-  const [searchQuery, setSearchQuery] = useState(""); // Estado para o campo de busca
+  const [filteredPosts, setFilteredPosts] = useState<any[]>([]); 
+  const [searchQuery, setSearchQuery] = useState("");
   const { fetchPosts, deletePost, posts, loading, filterPosts } = usePosts(accessToken || "");
 
   useEffect(() => {

@@ -33,6 +33,10 @@ export const homeStyles = StyleSheet.create({
     flex: 1,
     fontSize: 16,
     padding: 8,
+    borderStyle: "solid",
+    borderWidth: 1,
+    borderColor: "#ccc",
+    borderRadius: 8,
   },
   postCard: {
     flexDirection: 'row',

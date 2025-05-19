@@ -3,7 +3,7 @@ import { View, Text, FlatList, TouchableOpacity, Image, Alert, ActivityIndicator
 import { useNavigation } from "@react-navigation/native";
 import axios from "axios";
 import { useAuth } from "../../contexts/AuthContext";
-import { RootStackParamList } from "../../types";
+import { IUser, RootStackParamList } from "../../types";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { AntDesign } from "@expo/vector-icons";
 
@@ -15,7 +15,7 @@ export default function DocentesScreen() {
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
   
   const { accessToken, isAuthenticated, isAdmin } = useAuth();
-  const [professores, setProfessores] = useState<any[]>([]);
+  const [professores, setProfessores] = useState<IUser[]>([]);
   const [filteredProfessores, setFilteredProfessores] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState(""); 
