@@ -97,7 +97,7 @@ export default function PostForm({ initialData, onSubmit }: PostFormProps) {
               {isSubmitting ? (
                 <ActivityIndicator color="#fff" />
               ) : (
-                <Text style={styles.buttonText}>Cadastrar</Text>
+                <Text style={styles.buttonText}> {initialData ? "Salvar" : "Cadastrar"}</Text>
               )}
             </TouchableOpacity>
           </View>
