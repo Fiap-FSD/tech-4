@@ -54,14 +54,15 @@ Autenticação: Implementação de autenticação baseada em JWT, com tokens arm
 ├── src/
 │   ├── components/       # Componentes reutilizáveis de UI
 │   ├── screens/          # Telas da aplicação
-│   ├── services/         # Módulos de acesso à API
 │   ├── contexts/         # Contextos para gerenciamento de estado
 │   ├── hooks/            # Hooks personalizados
-│   └── utils/            # Funções utilitárias
+│   └── types/            # Código para organizar as configurações de dados, formulários e rotas do app
 ├── assets/               # Recursos estáticos (imagens, fontes)
 ├── App.tsx               # Componente principal da aplicação
 ├── app.json              # Configurações do projeto Expo
 ├── package.json          # Dependências e scripts do projeto
+├── index.ts              # Registra o App como componente raiz no ambiente Expo
+├── package-lock.json     # Registra as versões exatas das dependência
 └── tsconfig.json         # Configurações do TypeScript
 ```
 
@@ -101,24 +102,19 @@ O projeto prioriza uma experiência de usuário fluida e responsiva, com interfa
   - Os usuários podem editar posts existentes.
   - A edição é feita por meio de um formulário onde o usuário pode atualizar os campos.
 
-**6. Página de Criação de Professores:**
+**6. Página de Criação de Professores e Alunos:**
 
-  - Os usuários autenticados podem cadastrar novas contas de professores. Nome, email e senha, podem ser definidos.
+  - Os usuários autenticados podem cadastrar novas contas de professores ou aunos. Nome, email e senha, podem ser definidos.
   - A criação é feita por meio de um formulário onde o usuário pode preencher os campos.
 
 **7. Página de Edição de Professores:**
 
   - Os usuários podem editar contas de professores existentes.
   - A edição é feita por meio de um formulário onde o usuário pode atualizar os campos.
-  - 
+
 **8. Página de listagem de Professores:**
 
   - Os usuários podem conferir as informações de todos os professores.
-
-**9. Página de Criação de Alunos:**
-
-  - Os usuários autenticados podem cadastrar novas contas de Alunos. Nome, email e senha, podem ser definidos.
-  - A criação é feita por meio de um formulário onde o usuário pode preencher os campos.
 
 **10. Página de Edição de Alunos:**
 
