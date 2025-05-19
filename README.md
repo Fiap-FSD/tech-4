@@ -104,7 +104,7 @@ O projeto prioriza uma experiência de usuário fluida e responsiva, com interfa
 
 **6. Página de Criação de Professores e Alunos:**
 
-  - Os usuários autenticados podem cadastrar novas contas de professores ou aunos. Nome, email e senha, podem ser definidos.
+  - Os usuários autenticados podem cadastrar novas contas de professores ou alunos. Nome, email, cargo e senha, podem ser definidos.
   - A criação é feita por meio de um formulário onde o usuário pode preencher os campos.
 
 **7. Página de Edição de Professores:**
