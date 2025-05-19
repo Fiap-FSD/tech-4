@@ -1,16 +1,17 @@
 import React, { useState } from "react";
 import { View, Text, TouchableOpacity, StyleSheet, Dimensions, TouchableWithoutFeedback, Animated } from "react-native";
-import { useNavigation } from "@react-navigation/native";
+import { NavigationProp, useNavigation } from "@react-navigation/native";
 import { useAuth } from "../../contexts/AuthContext";
 import { styles } from "./styles";
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
+import { RootStackParamList } from "../../types";
 import { Alert } from "react-native";
 
 
 const SCREEN_WIDTH = Dimensions.get("window").width;
 
 export default function Header() {
-  const navigation = useNavigation();
+  const navigation = useNavigation<NavigationProp<RootStackParamList>>();
   const { isAdmin } = useAuth();
   const [menuVisible, setMenuVisible] = useState(false);
   const [slideAnim] = useState(new Animated.Value(-SCREEN_WIDTH * 0.8)); // Animação inicial fora da tela

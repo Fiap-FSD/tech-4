@@ -1,64 +1,58 @@
 import React, { useEffect, useState } from "react";
 import { useAuth } from "../../contexts/AuthContext";
-import axios from "axios";
-import { IPost } from "../../types";
-import { useRoute, RouteProp, useNavigation } from "@react-navigation/native"; // Para pegar o id do post
+import { IPost, RootStackParamList } from "../../types";
+import { useRoute, RouteProp, useNavigation, NavigationProp } from "@react-navigation/native";
 import PostForm from "../../components/FormPost/FormPost";
 import { Alert, KeyboardAvoidingView, Platform, Text } from "react-native";
+import usePosts from "../../hooks/usePosts";
 
 export default function EditPostScreen() {
   const { accessToken } = useAuth();
   const route = useRoute<RouteProp<{ params: { postId: string } }, 'params'>>();
   const { postId } = route.params;
   const [post, setPost] = useState<IPost | null>(null);
-  const navigation = useNavigation();
+  const navigation = useNavigation<NavigationProp<RootStackParamList>>();
+  const { getPostById, updatePost, loading, error } = usePosts(accessToken || "");
 
-  // Função para carregar o post a ser editado
-  const loadPost = async () => {
-    try {
-      const response = await axios.get(`https://blog-posts-hori.onrender.com/post/${postId}`, {
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-        },
-      });
-      setPost(response.data); // Definindo os dados do post no estado
-    } catch (err) {
-      console.error("Erro ao carregar o post:", err);
-      Alert.alert("Erro", "Não foi possível carregar o post.");
-    }
-  };
-
-  // Carregar o post ao montar o componente
   useEffect(() => {
-    loadPost();
-  }, [postId]);
+    const fetchPost = async () => {
+      const fetchedPost = await getPostById(postId);
+      setPost(fetchedPost);
+    };
+
+    if (postId && accessToken) {
+      fetchPost();
+    }
+  }, [postId, accessToken, getPostById]);
 
   const handleSubmit = async (values: IPost) => {
-    try {
-      // Enviando os dados editados do post para a API usando axios
-      await axios.put(`https://blog-posts-hori.onrender.com/post/${postId}`, values, {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${accessToken}`,
-        },
-      });
-      navigation.goBack();
-    } catch (err) {
-      console.error("Erro ao editar post:", err);
-      Alert.alert("Erro", "Não foi possível editar o post. Tente novamente.");
+    if (postId) {
+      await updatePost(postId, values);
+      if (!error) {
+        navigation.navigate("Home");
+      } else {
+        Alert.alert("Erro", "Não foi possível editar o post. Tente novamente.");
+      }
     }
   };
 
-  // Verificar se o post está carregado
+  if (loading && !post) {
+    return <Text>Carregando post...</Text>;
+  }
+
+  if (error && !post) {
+    return <Text>Erro ao carregar o post.</Text>;
+  }
+
   if (!post) {
-    return <Text>Carregando...</Text>; // Exibe um carregando enquanto o post não for carregado
+    return null; // Ou outra mensagem de carregamento/erro
   }
 
   return (
     <KeyboardAvoidingView
       style={{ flex: 1 }}
       behavior={Platform.OS === "ios" ? "padding" : "height"}
-      keyboardVerticalOffset={10} // ajuste se necessário
+      keyboardVerticalOffset={10}
     >
       <PostForm initialData={post} onSubmit={handleSubmit} />
     </KeyboardAvoidingView>

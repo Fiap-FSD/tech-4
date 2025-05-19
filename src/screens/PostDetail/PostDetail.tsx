@@ -1,38 +1,30 @@
 import React, { useEffect, useState } from "react";
 import { View, Text, Image, ScrollView, ActivityIndicator, Alert, useWindowDimensions } from "react-native";
-import axios from "axios";
 import { useRoute } from "@react-navigation/native";
 import { useAuth } from "../../contexts/AuthContext";
 import { postDetailStyles } from "./styles";
 import { WebView } from "react-native-webview";
+import usePosts from "../../hooks/usePosts";
 
 export default function PostDetailScreen() {
   const route = useRoute();
   const { id } = route.params as { id: string };
   const { accessToken } = useAuth();
   const [post, setPost] = useState<any>(null);
-  const [loading, setLoading] = useState(true);
-
-  const fetchPost = async () => {
-    try {
-      const res = await axios.get(`https://blog-posts-hori.onrender.com/post/${id}`, {
-        headers: { Authorization: `Bearer ${accessToken}` },
-      });
-      setPost(res.data);
-    } catch (err) {
-      console.error("Erro ao buscar post:", err);
-      Alert.alert("Erro", "Não foi possível carregar o post.");
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  useEffect(() => {
-    fetchPost();
-  }, []);
-
+  const { getPostById, loading, error } = usePosts(accessToken || "");
   const { width } = useWindowDimensions();
   const isLargeScreen = width > 768;
+
+  useEffect(() => {
+    const fetchPost = async () => {
+      const fetchedPost = await getPostById(id);
+      setPost(fetchedPost);
+    };
+
+    if (id && accessToken) {
+      fetchPost();
+    }
+  }, [id, accessToken, getPostById]);
 
   const getYouTubeEmbedUrl = (url: string) => {
     const match = url.match(/(?:\?v=|\/embed\/|\.be\/)([a-zA-Z0-9_-]{11})/);
@@ -41,6 +33,7 @@ export default function PostDetailScreen() {
   };
 
   if (loading) return <ActivityIndicator style={{ marginTop: 40 }} size="large" color={"#007AFF"} />;
+  if (error) return <Text style={{ marginTop: 40, textAlign: "center" }}>Erro ao carregar o post.</Text>;
   if (!post) return <Text style={{ marginTop: 40, textAlign: "center" }}>Post não encontrado</Text>;
 
   const videoEmbedUrl = post.videoUrl ? getYouTubeEmbedUrl(post.videoUrl) : null;
