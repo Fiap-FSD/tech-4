@@ -116,16 +116,16 @@ O projeto prioriza uma experiência de usuário fluida e responsiva, com interfa
 
   - Os usuários podem conferir as informações de todos os professores.
 
-**10. Página de Edição de Alunos:**
+**9. Página de Edição de Alunos:**
 
   - Os usuários podem editar contas de alunos existentes.
   - A edição é feita por meio de um formulário onde o usuário pode atualizar os campos.
 
-**11. Página de listagem de Alunos:**
+**10. Página de listagem de Alunos:**
 
   - Os usuários podem conferir as informações de todos os alunos.
 
-**12. Página Administrativa:**
+**11. Página Administrativa:**
 
   - A página exibe uma lista de todos os posts disponíveis, com opções para editar e excluir cada post.
   - Os usários podem buscar um post espécifíco através de um campo de pesquisa por palavras-chave.
