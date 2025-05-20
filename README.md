@@ -87,6 +87,7 @@ O projeto prioriza uma experiência de usuário fluida e responsiva, com interfa
   - A página exibe uma lista de todos os posts disponíveis.
   - Os usários podem buscar um post espécifíco através de um campo de pesquisa por palavras-chave.
   - Cada item da lista mostra o título, autor e uma breve descrição do post.
+  - Permite edição e exclusão de postagens, (caso seja um professor acessando).
 
 **3. Página de leitura de Post:**
 
@@ -124,12 +125,6 @@ O projeto prioriza uma experiência de usuário fluida e responsiva, com interfa
 **10. Página de listagem de Alunos:**
 
   - Os usuários podem conferir as informações de todos os alunos.
-
-**11. Página Administrativa:**
-
-  - A página exibe uma lista de todos os posts disponíveis, com opções para editar e excluir cada post.
-  - Os usários podem buscar um post espécifíco através de um campo de pesquisa por palavras-chave.
-  - Cada item da lista mostra o título, autor e uma breve descrição do post.
 
 ## 📦 Instalação e Execução
 
@@ -196,7 +191,7 @@ A autenticação da aplicação é baseada em **JWT (JSON Web Token)**, com o us
 
 > 🛡️ A combinação de JWT + jwt-decode garante segurança, controle de sessão e diferenciação de permissões entre professores e alunos.
 
-👉 **[Link para o vídeo](https://www.youtube.com/watch?v=bK5arno51pw)**  
+👉 **[Link para o vídeo](https://youtu.be/8yMLrRwFpiY)**  
 
 
 ## 📜 Conclusão
