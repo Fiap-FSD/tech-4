@@ -6,6 +6,8 @@ import { useAuth } from "../../contexts/AuthContext";
 import { IUser, RootStackParamList } from "../../types";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { AntDesign } from "@expo/vector-icons";
+import { useFocusEffect } from "@react-navigation/native";
+import { useCallback } from "react";
 
 import { alunosStyles } from "./styles";
 
@@ -72,9 +74,11 @@ export default function AlunosScreen() {
     ]);
   };
 
-  useEffect(() => {
-    fetchAlunos();
-  }, []);
+  useFocusEffect(
+    useCallback(() => {
+      fetchAlunos();
+    }, [])
+  );
 
   if (loading) return <ActivityIndicator style={{ marginTop: 40 }} size="large" color={"#007AFF"} />;
 
