@@ -6,6 +6,8 @@ import { useAuth } from "../../contexts/AuthContext";
 import { IUser, RootStackParamList } from "../../types";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { AntDesign } from "@expo/vector-icons";
+import { useFocusEffect } from "@react-navigation/native";
+import { useCallback } from "react";
 
 import { docentesStyles } from "./styles";
 
@@ -73,9 +75,11 @@ export default function DocentesScreen() {
     ]);
   };
 
-  useEffect(() => {
-    fetchProfessores();
-  }, []);
+  useFocusEffect(
+    useCallback(() => {
+      fetchProfessores();
+    }, [])
+  );
 
   if (loading) return <ActivityIndicator style={{ marginTop: 40 }} size="large" color={"#007AFF"} />;
 
